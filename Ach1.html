@@ -3,11 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 1</title>
+    <title>Test Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+        button {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function calculateResults() {
+            const correctCheckboxes = document.querySelectorAll('input[type="checkbox"][data-correct="true"]:checked').length;
+            const incorrectCheckboxes = document.querySelectorAll('input[type="checkbox"][data-correct="false"]:checked').length;
+
+            document.getElementById('total-correct').textContent = correctCheckboxes;
+            document.getElementById('total-incorrect').textContent = incorrectCheckboxes;
+        }
+    </script>
 </head>
 <body>
-    <h1>Welcome to Page 1</h1>
-    <p>This is the first page.</p>
-    <a href="index.html">Back to Main Page</a>
-</body>
-</html>
+    <h1>Test Results Form</h1>
+    
+    <label for="name">Name:</label>
+    <input type="text" id="name" required><br><br>
+    
+    <label for="date">Date:</label>
+    <input type="date" id="date" required><br><br>
+    
+    <label for="tested-by">Tested by:</label>
+    <input type="text" id="tested-by" required><br><br>
+    
+    <h2>Questions</h2>
+    
+    <div class="question">
+        <label>Question 1:</label>
+        <input type="checkbox" data-correct="true"> Correct
+        <input type="checkbox" data-correct="false"> Incorrect
+    </div>
+    
+    <div class="question">
+        <label>Question 2:</label>
+        <input type="checkbox" data-correct="true"> Correct
+        <input type="checkbox" data-correct="false"> Incorrect
+    </div>
+
+    <div class="question">
+        <label>Question 3:</label>
+        <inp
+
