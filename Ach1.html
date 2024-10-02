@@ -5,108 +5,173 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Achievement 1 Drill Test</title>
     <style>
-        /* Your existing styles */
-        .result-text {
-            font-size: 40px;
-        }
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+        h1, h2, h3 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="date"] {
+            width: 200px;
+            padding: 5px;
+            margin-top: 5px;
+        }
         .question {
-            margin-bottom: 10px;
-        }
-        button {
-            margin-top: 20px;
-        }
-        .checkbox-group {
-            display: flex;
-            justify-content: flex-start;
-        }
-        .checkbox-group input {
-            margin-left: 10px;
+            margin-bottom: 20px;
         }
         .qualifications {
-            margin: 5px 0 10px 0;
+            margin: 10px 0;
             font-style: italic;
         }
-        hr {
-            margin: 20px 0;
+        .radio-group {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .radio-group label {
+            margin-right: 20px;
+            font-weight: normal;
+        }
+        .radio-group input[type="radio"] {
+            margin-right: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 5px 20px 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result-text {
+            font-size: 35px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
         }
         .passed {
             color: green;
-            font-size: 35px;
-            font-weight: bold;
         }
         .not-passed {
             color: red;
-            font-size: 35px;
-            font-weight: bold;
+        }
+        hr {
+            margin: 30px 0;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
+    <!-- Include jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         function calculateResults() {
             const totalQuestions = 15;
-            const correctCheckboxes = document.querySelectorAll('input[type="checkbox"][data-correct="true"]:checked').length;
-            const incorrectCheckboxes = document.querySelectorAll('input[type="checkbox"][data-correct="false"]:checked').length;
+            let correctAnswers = 0;
+            let totalAnswered = 0;
 
-            if (correctCheckboxes + incorrectCheckboxes !== totalQuestions) {
-                alert("Total number of answers is above or below 15: Please check answers");
+            // Iterate through each question to count correct and total answers
+            const questions = document.querySelectorAll('.question');
+            questions.forEach((question, index) => {
+                const correctRadio = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`);
+                const incorrectRadio = question.querySelector(`input[name="q${index + 1}"][data-correct="false"]`);
+
+                if (correctRadio.checked || incorrectRadio.checked) {
+                    totalAnswered += 1;
+                }
+
+                if (correctRadio.checked) {
+                    correctAnswers += 1;
+                }
+            });
+
+            // Check if all questions are answered
+            if (totalAnswered !== totalQuestions) {
+                alert(`You have answered ${totalAnswered} out of ${totalQuestions} questions. Please answer all questions.`);
                 return;
             }
 
-            const score = correctCheckboxes;
-            const percentage = (score / totalQuestions) * 100;
-            let resultMessage;
-            let resultClass;
+            const percentage = (correctAnswers / totalQuestions) * 100;
+            let resultMessage = '';
+            let resultClass = '';
 
             if (percentage >= 75) {
-                resultMessage = `Passed - Number Correct: ${score}`;
+                resultMessage = `Passed - Number Correct: ${correctAnswers}`;
                 resultClass = 'passed';
             } else {
-                resultMessage = `Failed - Number Correct: ${score}`;
+                resultMessage = `Failed - Number Correct: ${correctAnswers}`;
                 resultClass = 'not-passed';
             }
 
-            alert(resultMessage);
-            document.getElementById('total-correct').textContent = correctCheckboxes;
-            document.getElementById('total-incorrect').textContent = incorrectCheckboxes;
+            // Display results
+            document.getElementById('total-correct').textContent = correctAnswers;
+            document.getElementById('total-incorrect').textContent = totalQuestions - correctAnswers;
             const resultElement = document.getElementById('result');
             resultElement.textContent = resultMessage;
-            resultElement.className = resultClass;
+            resultElement.className = `result-text ${resultClass}`;
 
-            window.scrollTo(0, document.body.scrollHeight);
+            // Optionally, scroll to the results section
+            resultElement.scrollIntoView({ behavior: 'smooth' });
         }
 
         function generatePDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // Get values from form
-            const name = document.getElementById('name').value;
-            const date = document.getElementById('date').value;
-            const testedBy = document.getElementById('tested-by').value;
+            // Get form data
+            const name = document.getElementById('name').value || 'N/A';
+            const date = document.getElementById('date').value || 'N/A';
+            const testedBy = document.getElementById('tested-by').value || 'N/A';
             const totalCorrect = document.getElementById('total-correct').textContent;
             const totalIncorrect = document.getElementById('total-incorrect').textContent;
             const result = document.getElementById('result').textContent;
 
-            // Adding content to the PDF
-            doc.text(20, 20, `Name: ${name}`);
-            doc.text(20, 30, `Date: ${date}`);
-            doc.text(20, 40, `Tested by: ${testedBy}`);
-            doc.text(20, 50, `Total Correct: ${totalCorrect}`);
-            doc.text(20, 60, `Total Incorrect: ${totalIncorrect}`);
-            doc.text(20, 70, `Result: ${result}`);
+            // Add header
+            doc.setFontSize(18);
+            doc.text('Achievement 1 Drill & Ceremonies Practical Test', 105, 20, { align: 'center' });
+
+            // Add personal details
+            doc.setFontSize(12);
+            doc.text(`Name: ${name}`, 20, 30);
+            doc.text(`Date: ${date}`, 20, 40);
+            doc.text(`Tested by: ${testedBy}`, 20, 50);
+
+            // Add results
+            doc.text(`Total Correct: ${totalCorrect}`, 20, 60);
+            doc.text(`Total Incorrect: ${totalIncorrect}`, 20, 70);
+            doc.text(`Result: ${result}`, 20, 80);
 
             // Add questions and answers
+            doc.setFontSize(14);
+            doc.text('Questions and Answers:', 20, 90);
+
+            doc.setFontSize(12);
+            let currentY = 100;
+
             const questions = document.querySelectorAll('.question');
             questions.forEach((question, index) => {
-                const label = question.querySelector('label').textContent;
+                const questionLabel = question.querySelector('label').textContent;
                 const qualifications = question.querySelector('.qualifications').innerText;
-                const isCheckedCorrect = question.querySelector('input[data-correct="true"]').checked;
-                const answer = isCheckedCorrect ? 'Correct' : 'Incorrect';
-                doc.text(20, 80 + (index * 10), `${label}: ${answer}`);
+                const correctChecked = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`).checked;
+                const answer = correctChecked ? 'Correct' : 'Incorrect';
+
+                // Handle page overflow
+                if (currentY > 280) {
+                    doc.addPage();
+                    currentY = 20;
+                }
+
+                doc.text(`${questionLabel} ${answer}`, 20, currentY);
+                currentY += 10;
             });
 
             // Save the PDF
@@ -117,80 +182,271 @@
 <body>
     <h1>Achievement 1 Drill & Ceremonies Practical Test</h1>
     
-    <label for="name">Name:</label>
-    <input type="text" id="name" required><br><br>
-    
-    <label for="date">Date:</label>
-    <input type="date" id="date" required><br><br>
-    
-    <label for="tested-by">Tested by:</label>
-    <input type="text" id="tested-by" required><br><br>
+    <!-- Personal Information -->
+    <div style="text-align: center; margin-bottom: 30px;">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" required><br><br>
+        
+        <label for="date">Date:</label><br>
+        <input type="date" id="date" required><br><br>
+        
+        <label for="tested-by">Tested by:</label><br>
+        <input type="text" id="tested-by" required>
+    </div>
     
     <h2>Questions</h2>
     <hr>
 
+    <!-- Questions -->
     <!-- Repeat this block for all 15 questions -->
+
+    <!-- Question 1 -->
     <div class="question">
         <label>Question 1:</label>
         <div class="qualifications">
-            Example Qualifications Line 1<br>
-            Example Qualifications Line 2<br>
-            Example Qualifications Line 3<br>
-            Example Qualifications Line 4<br>
+            Qualification Line 1 for Question 1<br>
+            Qualification Line 2 for Question 1<br>
+            Qualification Line 3 for Question 1<br>
+            Qualification Line 4 for Question 1
         </div>
-        <div class="checkbox-group">
-            <input type="checkbox" data-correct="false"> Incorrect
-            <input type="checkbox" data-correct="true"> Correct
+        <div class="radio-group">
+            <label><input type="radio" name="q1" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q1" data-correct="true"> Correct</label>
         </div>
-        <hr>
     </div>
+    <hr>
 
-    <!-- Repeat blocks for all questions up to Question 15 -->
-    <!-- Question blocks from 2 to 15 -->
+    <!-- Question 2 -->
     <div class="question">
         <label>Question 2:</label>
         <div class="qualifications">
-            Example Qualifications Line 1<br>
-            Example Qualifications Line 2<br>
-            Example Qualifications Line 3<br>
-            Example Qualifications Line 4<br>
+            Qualification Line 1 for Question 2<br>
+            Qualification Line 2 for Question 2<br>
+            Qualification Line 3 for Question 2<br>
+            Qualification Line 4 for Question 2
         </div>
-        <div class="checkbox-group">
-            <input type="checkbox" data-correct="false"> Incorrect
-            <input type="checkbox" data-correct="true"> Correct
+        <div class="radio-group">
+            <label><input type="radio" name="q2" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q2" data-correct="true"> Correct</label>
         </div>
-        <hr>
     </div>
+    <hr>
 
-    <!-- Continue adding similar blocks for all 15 questions... -->
-    
-    <!-- Last Question -->
+    <!-- Question 3 -->
+    <div class="question">
+        <label>Question 3:</label>
+        <div class="qualifications">
+            Qualification Line 1 for Question 3<br>
+            Qualification Line 2 for Question 3<br>
+            Qualification Line 3 for Question 3<br>
+            Qualification Line 4 for Question 3
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q3" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q3" data-correct="true"> Correct</label>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Question 4 -->
+    <div class="question">
+        <label>Question 4:</label>
+        <div class="qualifications">
+            Qualification Line 1 for Question 4<br>
+            Qualification Line 2 for Question 4<br>
+            Qualification Line 3 for Question 4<br>
+            Qualification Line 4 for Question 4
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q4" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q4" data-correct="true"> Correct</label>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Question 5 -->
+    <div class="question">
+        <label>Question 5:</label>
+        <div class="qualifications">
+            Qualification Line 1 for Question 5<br>
+            Qualification Line 2 for Question 5<br>
+            Qualification Line 3 for Question 5<br>
+            Qualification Line 4 for Question 5
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q5" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q5" data-correct="true"> Correct</label>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Question 6 -->
+    <div class="question">
+        <label>Question 6:</label>
+        <div class="qualifications">
+            Qualification Line 1 for Question 6<br>
+            Qualification Line 2 for Question 6<br>
+            Qualification Line 3 for Question 6<br>
+            Qualification Line 4 for Question 6
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q6" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q6" data-correct="true"> Correct</label>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Question 7 -->
+    <div class="question">
+        <label>Question 7:</label>
+        <div class="qualifications">
+            Qualification Line 1 for Question 7<br>
+            Qualification Line 2 for Question 7<br>
+            Qualification Line 3 for Question 7<br>
+            Qualification Line 4 for Question 7
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q7" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q7" data-correct="true"> Correct</label>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Question 8 -->
+    <div class="question">
+        <label>Question 8:</label>
+        <div class="qualifications">
+            Qualification Line 1 for Question 8<br>
+            Qualification Line 2 for Question 8<br>
+            Qualification Line 3 for Question 8<br>
+            Qualification Line 4 for Question 8
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q8" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q8" data-correct="true"> Correct</label>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Question 9 -->
+    <div class="question">
+        <label>Question 9:</label>
+        <div class="qualifications">
+            Qualification Line 1 for Question 9<br>
+            Qualification Line 2 for Question 9<br>
+            Qualification Line 3 for Question 9<br>
+            Qualification Line 4 for Question 9
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q9" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q9" data-correct="true"> Correct</label>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Question 10 -->
+    <div class="question">
+        <label>Question 10:</label>
+        <div class="qualifications">
+            Qualification Line 1 for Question 10<br>
+            Qualification Line 2 for Question 10<br>
+            Qualification Line 3 for Question 10<br>
+            Qualification Line 4 for Question 10
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q10" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q10" data-correct="true"> Correct</label>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Question 11 -->
+    <div class="question">
+        <label>Question 11:</label>
+        <div class="qualifications">
+            Qualification Line 1 for Question 11<br>
+            Qualification Line 2 for Question 11<br>
+            Qualification Line 3 for Question 11<br>
+            Qualification Line 4 for Question 11
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q11" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q11" data-correct="true"> Correct</label>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Question 12 -->
+    <div class="question">
+        <label>Question 12:</label>
+        <div class="qualifications">
+            Qualification Line 1 for Question 12<br>
+            Qualification Line 2 for Question 12<br>
+            Qualification Line 3 for Question 12<br>
+            Qualification Line 4 for Question 12
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q12" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q12" data-correct="true"> Correct</label>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Question 13 -->
+    <div class="question">
+        <label>Question 13:</label>
+        <div class="qualifications">
+            Qualification Line 1 for Question 13<br>
+            Qualification Line 2 for Question 13<br>
+            Qualification Line 3 for Question 13<br>
+            Qualification Line 4 for Question 13
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q13" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q13" data-correct="true"> Correct</label>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Question 14 -->
+    <div class="question">
+        <label>Question 14:</label>
+        <div class="qualifications">
+            Qualification Line 1 for Question 14<br>
+            Qualification Line 2 for Question 14<br>
+            Qualification Line 3 for Question 14<br>
+            Qualification Line 4 for Question 14
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q14" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q14" data-correct="true"> Correct</label>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Question 15 -->
     <div class="question">
         <label>Question 15:</label>
         <div class="qualifications">
-            Example Qualifications Line 1<br>
-            Example Qualifications Line 2<br>
-            Example Qualifications Line 3<br>
-            Example Qualifications Line 4<br>
+            Qualification Line 1 for Question 15<br>
+            Qualification Line 2 for Question 15<br>
+            Qualification Line 3 for Question 15<br>
+            Qualification Line 4 for Question 15
         </div>
-        <div class="checkbox-group">
-            <input type="checkbox" data-correct="false"> Incorrect
-            <input type="checkbox" data-correct="true"> Correct
+        <div class="radio-group">
+            <label><input type="radio" name="q15" data-correct="false"> Incorrect</label>
+            <label><input type="radio" name="q15" data-correct="true"> Correct</label>
         </div>
-        <hr>
     </div>
+    <hr>
 
-    <button onclick="calculateResults()">Calculate Results</button>
-    <button onclick="generatePDF()">Generate PDF</button>
-
-    <h3>Results</h3>
+    <h3>Test Results</h3>
     <p>Total Correct: <span id="total-correct">0</span></p>
     <p>Total Incorrect: <span id="total-incorrect">0</span></p>
-    <p id="result" class="result-text"></p>
-    
-    <p>
-    <a href="index.html">Return to Home</a>
-    </p>
+    <div id="result" class="result-text"></div>
 
+    <!-- Buttons to calculate results and generate PDF -->
+    <button onclick="calculateResults()">Submit Test</button>
+    <button onclick="generatePDF()">Download Results as PDF</button>
 </body>
 </html>
