@@ -45,12 +45,12 @@
         }
         .passed {
             color: green; /* Passed text color */
-            font-size: 40px; /* Increase font size for result text */
+            font-size: 35px; /* Increase font size for result text */
             font-weight: bold;
         }
         .not-passed {
             color: red; /* Not Passed text color */
-            font-size: 40px; /* Increase font size for result text */
+            font-size: 35px; /* Increase font size for result text */
             font-weight: bold;
         }
     </style>
@@ -62,7 +62,7 @@
 
             // Check if all questions are answered
             if (correctCheckboxes + incorrectCheckboxes !== totalQuestions) {
-                alert("Number of answers is above or below 15: Please check answers");
+                alert("Total number of answers is above or below 15: Please check answers");
                 return;
             }
 
@@ -73,10 +73,10 @@
             let resultMessage;
             let resultClass;
             if (percentage >= 75) {
-                resultMessage = `Passed - Score: ${score}`;
+                resultMessage = `Passed - Number Correct: ${score}`;
                 resultClass = 'passed';
             } else {
-                resultMessage = `Not Passed - Score: ${score}`;
+                resultMessage = `Failed - Number Correct: ${score}`;
                 resultClass = 'not-passed';
             }
 
