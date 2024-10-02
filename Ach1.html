@@ -1,17 +1,122 @@
-<?php
-// save_results.php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievement 1 Drill Test</title>
+    <style>
+        /* Add your existing CSS here */
+        .result-text {
+            font-size: 40px;
+        }
+        /* Additional styles omitted for brevity */
+    </style>
+    <script>
+        async function calculateResults() {
+            const totalQuestions = 15;
+            const correctCheckboxes = document.querySelectorAll('input[data-correct="true"]:checked').length;
+            const incorrectCheckboxes = document.querySelectorAll('input[data-correct="false"]:checked').length;
 
-$data = json_decode(file_get_contents('php://input'), true);
+            // Check if all questions are answered
+            if (correctCheckboxes + incorrectCheckboxes !== totalQuestions) {
+                alert("Total number of answers is above or below 15: Please check answers");
+                return;
+            }
 
-$name = $data['name'];
-$date = $data['date'];
-$testedBy = $data['testedBy'];
-$results = $data['results'];
+            const score = correctCheckboxes;
+            const percentage = (score / totalQuestions) * 100;
 
-$fileContent = "{$name}\n{$date}\n{$testedBy}\n" . implode("\n", $results) . "\n";
+            // Determine if passed or not
+            let resultMessage;
+            let resultClass;
+            if (percentage >= 75) {
+                resultMessage = `Passed - Number Correct: ${score}`;
+                resultClass = 'passed';
+            } else {
+                resultMessage = `Failed - Number Correct: ${score}`;
+                resultClass = 'not-passed';
+            }
 
-// Write to file
-file_put_contents('results.txt', $fileContent, FILE_APPEND | LOCK_EX);
+            alert(resultMessage); // Show alert for passing or not
+            document.getElementById('total-correct').textContent = correctCheckboxes;
+            document.getElementById('total-incorrect').textContent = incorrectCheckboxes;
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = resultMessage;
+            resultElement.className = resultClass;
 
-echo json_encode(["success" => true]);
-?>
+            // Prepare data for file
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const testedBy = document.getElementById('tested-by').value;
+
+            const results = [];
+            for (let i = 1; i <= totalQuestions; i++) {
+                const isChecked = document.querySelector(`input[data-question="${i}"]:checked`);
+                results.push(isChecked ? (isChecked.getAttribute('data-correct') === "true" ? "Correct" : "Incorrect") : "Not Answered");
+            }
+
+            const data = {
+                name: name,
+                date: date,
+                testedBy: testedBy,
+                results: results
+            };
+
+            // Send data to the server
+            try {
+                const response = await fetch('save_results.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+                if (!response.ok) throw new Error('Network response was not ok');
+            } catch (error) {
+                console.error('Error:', error);
+            }
+
+            // Scroll to the bottom of the page
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+    </script>
+</head>
+<body>
+    <h1>Achievement 1 Drill & Ceremonies Practical Test</h1>
+    
+    <label for="name">Name:</label>
+    <input type="text" id="name" required><br><br>
+    
+    <label for="date">Date:</label>
+    <input type="date" id="date" required><br><br>
+    
+    <label for="tested-by">Tested by:</label>
+    <input type="text" id="tested-by" required><br><br>
+    
+    <h2>Questions</h2>
+    <hr>
+
+    <!-- Questions repeated with unique data-question attributes -->
+    <div class="question" data-question="1">
+        <label>Question 1:</label>
+        <div class="checkbox-group">
+            <input type="checkbox" data-question="1" data-correct="false"> Incorrect
+            <input type="checkbox" data-question="1" data-correct="true"> Correct
+        </div>
+        <hr>
+    </div>
+    <!-- Repeat the above block for all questions, changing the data-question value -->
+
+    <button onclick="calculateResults()">Calculate Results</button>
+
+    <h3>Results</h3>
+    <p>Total Correct: <span id="total-correct">0</span></p>
+    <p>Total Incorrect: <span id="total-incorrect">0</span></p>
+    <p id="result" class="result-text"></p>
+    
+    <p>
+        <a href="index.html">Return to Home</a>
+    </p>
+
+</body>
+</html>
