@@ -15,14 +15,38 @@
         button {
             margin-top: 20px;
         }
+        .checkbox-group {
+            display: flex;
+            justify-content: space-between;
+            width: 300px; /* Adjust the width as needed */
+        }
     </style>
     <script>
         function calculateResults() {
+            const totalQuestions = 15;
             const correctCheckboxes = document.querySelectorAll('input[type="checkbox"][data-correct="true"]:checked').length;
             const incorrectCheckboxes = document.querySelectorAll('input[type="checkbox"][data-correct="false"]:checked').length;
 
+            // Check if all questions are answered
+            if (correctCheckboxes + incorrectCheckboxes !== totalQuestions) {
+                alert("Please answer all 15 questions.");
+                return;
+            }
+
+            const score = correctCheckboxes;
+            const percentage = (score / totalQuestions) * 100;
+
+            // Determine if passed or not
+            let resultMessage;
+            if (percentage >= 75) {
+                resultMessage = `Passed - Score: ${score}`;
+            } else {
+                resultMessage = `Not Passed - Score: ${score}`;
+            }
+
             document.getElementById('total-correct').textContent = correctCheckboxes;
             document.getElementById('total-incorrect').textContent = incorrectCheckboxes;
+            document.getElementById('result').textContent = resultMessage;
         }
     </script>
 </head>
@@ -42,92 +66,122 @@
     
     <div class="question">
         <label>Question 1:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
-    
+
     <div class="question">
         <label>Question 2:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 3:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 4:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 5:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 6:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 7:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 8:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 9:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 10:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 11:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 12:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 13:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 14:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <div class="question">
         <label>Question 15:</label>
-        <input type="checkbox" data-correct="true"> Correct
-        <input type="checkbox" data-correct="false"> Incorrect
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
+        </div>
     </div>
 
     <button onclick="calculateResults()">Calculate Results</button>
@@ -135,5 +189,6 @@
     <h3>Results</h3>
     <p>Total Correct: <span id="total-correct">0</span></p>
     <p>Total Incorrect: <span id="total-incorrect">0</span></p>
+    <p id="result"></p>
 </body>
 </html>
