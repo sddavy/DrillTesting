@@ -52,6 +52,14 @@
             document.getElementById('total-incorrect').textContent = incorrectCheckboxes;
             document.getElementById('result').textContent = resultMessage;
         }
+
+        function toggleCheckbox(correctCheckbox, incorrectCheckbox) {
+            incorrectCheckbox.checked = false; // Uncheck Incorrect
+        }
+
+        function toggleCheckbox2(correctCheckbox, incorrectCheckbox) {
+            correctCheckbox.checked = false; // Uncheck Correct
+        }
     </script>
 </head>
 <body>
@@ -67,7 +75,7 @@
     <input type="text" id="tested-by" required><br><br>
     
     <h2>Questions</h2>
-    
+
     <!-- Repeat this block for each question -->
     <div class="question">
         <label>Question 1:</label>
@@ -78,8 +86,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false"> Incorrect
-            <input type="checkbox" data-correct="true"> Correct
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
         </div>
     </div>
 
@@ -92,8 +100,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false"> Incorrect
-            <input type="checkbox" data-correct="true"> Correct
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
         </div>
     </div>
 
@@ -106,12 +114,178 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false"> Incorrect
-            <input type="checkbox" data-correct="true"> Correct
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
         </div>
     </div>
 
-    <!-- Continue this pattern for Questions 4-15 -->
+    <div class="question">
+        <label>Question 4:</label>
+        <div class="qualifications">
+            Example Qualifications Line 1<br>
+            Example Qualifications Line 2<br>
+            Example Qualifications Line 3<br>
+            Example Qualifications Line 4<br>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Question 5:</label>
+        <div class="qualifications">
+            Example Qualifications Line 1<br>
+            Example Qualifications Line 2<br>
+            Example Qualifications Line 3<br>
+            Example Qualifications Line 4<br>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Question 6:</label>
+        <div class="qualifications">
+            Example Qualifications Line 1<br>
+            Example Qualifications Line 2<br>
+            Example Qualifications Line 3<br>
+            Example Qualifications Line 4<br>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Question 7:</label>
+        <div class="qualifications">
+            Example Qualifications Line 1<br>
+            Example Qualifications Line 2<br>
+            Example Qualifications Line 3<br>
+            Example Qualifications Line 4<br>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Question 8:</label>
+        <div class="qualifications">
+            Example Qualifications Line 1<br>
+            Example Qualifications Line 2<br>
+            Example Qualifications Line 3<br>
+            Example Qualifications Line 4<br>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Question 9:</label>
+        <div class="qualifications">
+            Example Qualifications Line 1<br>
+            Example Qualifications Line 2<br>
+            Example Qualifications Line 3<br>
+            Example Qualifications Line 4<br>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Question 10:</label>
+        <div class="qualifications">
+            Example Qualifications Line 1<br>
+            Example Qualifications Line 2<br>
+            Example Qualifications Line 3<br>
+            Example Qualifications Line 4<br>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Question 11:</label>
+        <div class="qualifications">
+            Example Qualifications Line 1<br>
+            Example Qualifications Line 2<br>
+            Example Qualifications Line 3<br>
+            Example Qualifications Line 4<br>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Question 12:</label>
+        <div class="qualifications">
+            Example Qualifications Line 1<br>
+            Example Qualifications Line 2<br>
+            Example Qualifications Line 3<br>
+            Example Qualifications Line 4<br>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Question 13:</label>
+        <div class="qualifications">
+            Example Qualifications Line 1<br>
+            Example Qualifications Line 2<br>
+            Example Qualifications Line 3<br>
+            Example Qualifications Line 4<br>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Question 14:</label>
+        <div class="qualifications">
+            Example Qualifications Line 1<br>
+            Example Qualifications Line 2<br>
+            Example Qualifications Line 3<br>
+            Example Qualifications Line 4<br>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+        </div>
+    </div>
+
+    <div class="question">
+        <label>Question 15:</label>
+        <div class="qualifications">
+            Example Qualifications Line 1<br>
+            Example Qualifications Line 2<br>
+            Example Qualifications Line 3<br>
+            Example Qualifications Line 4<br>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
+            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+        </div>
+    </div>
 
     <button onclick="calculateResults()">Calculate Results</button>
 
