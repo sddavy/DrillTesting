@@ -17,8 +17,8 @@
         }
         .checkbox-group {
             display: flex;
-            justify-content: center; /* Center checkboxes */
-            gap: 20px; /* Space between the two checkboxes */
+            flex-direction: column; /* Stack checkboxes vertically */
+            align-items: flex-end; /* Align checkboxes to the right */
         }
         .qualifications {
             margin: 5px 0 10px 0;
@@ -55,14 +55,6 @@
             document.getElementById('total-incorrect').textContent = incorrectCheckboxes;
             document.getElementById('result').textContent = resultMessage;
         }
-
-        function toggleCheckbox(correctCheckbox, incorrectCheckbox) {
-            incorrectCheckbox.checked = false; // Uncheck Incorrect
-        }
-
-        function toggleCheckbox2(correctCheckbox, incorrectCheckbox) {
-            correctCheckbox.checked = false; // Uncheck Correct
-        }
     </script>
 </head>
 <body>
@@ -89,8 +81,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -104,8 +96,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -119,8 +111,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -134,8 +126,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -149,8 +141,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -164,8 +156,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -179,8 +171,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -194,8 +186,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -209,8 +201,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -224,8 +216,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -239,8 +231,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -254,8 +246,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -269,8 +261,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -284,8 +276,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
@@ -299,8 +291,8 @@
             Example Qualifications Line 4<br>
         </div>
         <div class="checkbox-group">
-            <input type="checkbox" data-correct="false" onclick="toggleCheckbox(this, this.nextElementSibling)"> Incorrect
-            <input type="checkbox" data-correct="true" onclick="toggleCheckbox2(this, this.previousElementSibling)"> Correct
+            <input type="checkbox" data-correct="false"> Incorrect
+            <input type="checkbox" data-correct="true"> Correct
         </div>
         <hr>
     </div>
