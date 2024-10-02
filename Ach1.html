@@ -104,7 +104,7 @@
             let resultMessage = '';
             let resultClass = '';
 
-            if (percentage >= 75) {
+            if (percentage >= 73) {
                 resultMessage = `Passed - Number Correct: ${correctAnswers}`;
                 resultClass = 'passed';
             } else {
@@ -175,7 +175,7 @@
             });
 
             // Save the PDF
-            doc.save(${name}'-Achievement1DrillTest.pdf');
+            doc.save('Achievement1DrillTest.pdf - ', ${testedBy});
         }
     </script>
 </head>
