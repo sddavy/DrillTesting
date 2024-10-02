@@ -17,8 +17,11 @@
         }
         .checkbox-group {
             display: flex;
-            flex-direction: column; /* Stack checkboxes vertically */
-            align-items: flex-end; /* Align checkboxes to the right */
+            justify-content: flex-end; /* Align checkboxes to the right */
+            width: 250px; /* Set width for alignment */
+        }
+        .checkbox-group input {
+            margin-left: 10px; /* Add space between checkboxes */
         }
         .qualifications {
             margin: 5px 0 10px 0;
@@ -26,6 +29,10 @@
         }
         hr {
             margin: 20px 0; /* Space above and below the horizontal line */
+        }
+        .result-text {
+            font-size: 24px; /* Increase font size for result text */
+            font-weight: bold;
         }
     </style>
     <script>
@@ -51,6 +58,7 @@
                 resultMessage = `Not Passed - Score: ${score}`;
             }
 
+            alert(resultMessage); // Show alert for passing or not
             document.getElementById('total-correct').textContent = correctCheckboxes;
             document.getElementById('total-incorrect').textContent = incorrectCheckboxes;
             document.getElementById('result').textContent = resultMessage;
@@ -302,6 +310,6 @@
     <h3>Results</h3>
     <p>Total Correct: <span id="total-correct">0</span></p>
     <p>Total Incorrect: <span id="total-incorrect">0</span></p>
-    <p id="result"></p>
+    <p id="result" class="result-text"></p>
 </body>
 </html>
