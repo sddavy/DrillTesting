@@ -438,6 +438,23 @@
     </div>
     <hr>
 
+    ${Array.from({ length: 15 }, (_, index) => `
+        <div class="question">
+            <label>Question ${index + 1}:</label>
+            <div class="qualifications">
+                Qualification Line 1 for Question ${index + 1}<br>
+                Qualification Line 2 for Question ${index + 1}<br>
+                Qualification Line 3 for Question ${index + 1}<br>
+                Qualification Line 4 for Question ${index + 1}
+            </div>
+            <div class="radio-group">
+                <label><input type="radio" name="q${index + 1}" data-correct="false"> Incorrect</label>
+                <label><input type="radio" name="q${index + 1}" data-correct="true"> Correct</label>
+            </div>
+        </div>
+        <hr>
+    `).join('')}
+    
     <h3>Test Results</h3>
     <p>Total Correct: <span id="total-correct">0</span></p>
     <p>Total Incorrect: <span id="total-incorrect">0</span></p>
@@ -447,11 +464,10 @@
     <button onclick="calculateResults()">Submit Test</button>
     <button onclick="generatePDF()">Download Results as PDF</button>
     
-<div style="text-align: center; margin-top: 30px;">
-     <a href="index.html">
-         <button>Return to Home</button>
-    </a>
-</div>
-
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="index.html">
+            <button>Return to Home</button>
+        </a>
+    </div>
 </body>
 </html>
