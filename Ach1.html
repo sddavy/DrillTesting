@@ -87,7 +87,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         function calculateResults() {
-            const totalQuestions = 15;
+            const totalQuestions = 18; // Updated total number of questions
             let correctAnswers = 0;
             let totalAnswered = 0;
 
@@ -197,7 +197,7 @@
     
     <h2>Questions</h2>
     <hr>
-
+    
     <!-- Question 1 -->
     <div class="question">
         <label>FALL IN</label>
@@ -444,19 +444,14 @@
     </div>
     <hr>
     
-    <h3>Test Results</h3>
-    <p>Total Correct: <span id="total-correct">0</span></p>
-    <p>Total Incorrect: <span id="total-incorrect">0</span></p>
-    <div id="result" class="result-text"></div>
+    <button onclick="calculateResults()">Submit</button>
+    <button onclick="generatePDF()">Download PDF</button>
 
-    <!-- Buttons to calculate results and generate PDF -->
-    <button onclick="calculateResults()">Submit Test</button>
-    <button onclick="generatePDF()">Download Results as PDF</button>
-    
-    <div style="text-align: center; margin-top: 30px;">
-        <a href="index.html">
-            <button>Return to Home</button>
-        </a>
+    <div id="result" class="result-text"></div>
+    <div>Total Correct: <span id="total-correct">0</span></div>
+    <div>Total Incorrect: <span id="total-incorrect">0</span></div>
+</body>
+</html>
     </div>
 </body>
 </html>
