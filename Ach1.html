@@ -34,6 +34,12 @@
             font-size: 24px; /* Increase font size for result text */
             font-weight: bold;
         }
+        .passed {
+            color: green; /* Passed text color */
+        }
+        .not-passed {
+            color: red; /* Not Passed text color */
+        }
     </style>
     <script>
         function calculateResults() {
@@ -52,16 +58,24 @@
 
             // Determine if passed or not
             let resultMessage;
+            let resultClass;
             if (percentage >= 75) {
                 resultMessage = `Passed - Score: ${score}`;
+                resultClass = 'passed';
             } else {
                 resultMessage = `Not Passed - Score: ${score}`;
+                resultClass = 'not-passed';
             }
 
             alert(resultMessage); // Show alert for passing or not
             document.getElementById('total-correct').textContent = correctCheckboxes;
             document.getElementById('total-incorrect').textContent = incorrectCheckboxes;
-            document.getElementById('result').textContent = resultMessage;
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = resultMessage;
+            resultElement.className = resultClass;
+
+            // Scroll to the bottom of the page
+            window.scrollTo(0, document.body.scrollHeight);
         }
     </script>
 </head>
@@ -78,6 +92,7 @@
     <input type="text" id="tested-by" required><br><br>
     
     <h2>Questions</h2>
+    <hr> <!-- Horizontal line below Questions -->
 
     <!-- Repeat this block for each question -->
     <div class="question">
@@ -311,5 +326,10 @@
     <p>Total Correct: <span id="total-correct">0</span></p>
     <p>Total Incorrect: <span id="total-incorrect">0</span></p>
     <p id="result" class="result-text"></p>
+    
+    <p>
+    <a href="main.html">Return to Home</a>
+    </p>
+
 </body>
 </html>
