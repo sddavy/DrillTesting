@@ -8,6 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            line-height: 1.6;
         }
         h1, h2, h3 {
             text-align: center;
@@ -22,6 +23,10 @@
         }
         .question {
             margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
         }
         .qualifications {
             margin: 10px 0;
@@ -44,9 +49,16 @@
             margin: 10px 5px 20px 5px;
             font-size: 16px;
             cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
         .result-text {
-            font-size: 35px;
+            font-size: 24px;
             font-weight: bold;
             text-align: center;
             margin-top: 20px;
@@ -79,7 +91,6 @@
             let correctAnswers = 0;
             let totalAnswered = 0;
 
-            // Iterate through each question to count correct and total answers
             const questions = document.querySelectorAll('.question');
             questions.forEach((question, index) => {
                 const correctRadio = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`);
@@ -94,7 +105,6 @@
                 }
             });
 
-            // Check if all questions are answered
             if (totalAnswered !== totalQuestions) {
                 alert(`You have answered ${totalAnswered} out of ${totalQuestions} questions. Please answer all questions.`);
                 return;
@@ -112,14 +122,12 @@
                 resultClass = 'not-passed';
             }
 
-            // Display results
             document.getElementById('total-correct').textContent = correctAnswers;
             document.getElementById('total-incorrect').textContent = totalQuestions - correctAnswers;
             const resultElement = document.getElementById('result');
             resultElement.textContent = resultMessage;
             resultElement.className = `result-text ${resultClass}`;
 
-            // Optionally, scroll to the results section
             resultElement.scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -127,7 +135,6 @@
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // Get form data
             const name = document.getElementById('name').value || 'N/A';
             const date = document.getElementById('date').value || 'N/A';
             const testedBy = document.getElementById('tested-by').value || 'N/A';
@@ -135,22 +142,18 @@
             const totalIncorrect = document.getElementById('total-incorrect').textContent;
             const result = document.getElementById('result').textContent;
 
-            // Add header
             doc.setFontSize(18);
             doc.text('Achievement 1 Drill & Ceremonies Practical Test', 105, 20, { align: 'center' });
 
-            // Add personal details
             doc.setFontSize(12);
             doc.text(`Name: ${name}`, 20, 30);
             doc.text(`Date: ${date}`, 20, 40);
             doc.text(`Tested by: ${testedBy}`, 20, 50);
 
-            // Add results
             doc.text(`Total Correct: ${totalCorrect}`, 20, 60);
             doc.text(`Total Incorrect: ${totalIncorrect}`, 20, 70);
             doc.text(`Result: ${result}`, 20, 80);
 
-            // Add questions and answers
             doc.setFontSize(14);
             doc.text('Questions and Answers:', 20, 90);
 
@@ -164,7 +167,6 @@
                 const correctChecked = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`).checked;
                 const answer = correctChecked ? 'Correct' : 'Incorrect';
 
-                // Handle page overflow
                 if (currentY > 280) {
                     doc.addPage();
                     currentY = 20;
@@ -174,9 +176,7 @@
                 currentY += 10;
             });
 
-            // Save the PDF
             doc.save(`Achievement1DrillTest_${name}.pdf`);
-
         }
     </script>
 </head>
