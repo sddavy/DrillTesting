@@ -14,6 +14,7 @@
             margin: 10px 0;
             text-decoration: none;
             color: blue;
+            font-size: 1.2rem; /* Increased font size for readability on mobile */
         }
         a:hover {
             text-decoration: underline;
@@ -21,21 +22,58 @@
         h1 {
             text-align: center;
             margin-top: 25px;
+            font-size: 2rem;
         }
         h2 {
-            margin-top: 90px;
+            margin-top: 60px;
+            font-size: 1.8rem;
         }
+        .logo, .logo2 {
+            width: 80px; /* Reduced logo size for smaller screens */
+        }
+        /* Layout for larger screens */
         .logo {
             position: absolute;
             top: 20px;
             left: 20px;
-            width: 100px;
         }
         .logo2 {
             position: absolute;
             top: 20px;
             right: 20px;
-            width: 100px;
+        }
+
+        /* Media query for mobile screens */
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 1.5rem; /* Reduce font size for mobile */
+                margin-top: 10px;
+            }
+
+            h2 {
+                margin-top: 40px;
+                font-size: 1.5rem;
+            }
+
+            a {
+                font-size: 1rem; /* Adjust font size for links */
+                margin: 8px 0;
+            }
+
+            .logo, .logo2 {
+                width: 60px; /* Reduce logo size further on mobile */
+                position: static; /* Remove absolute positioning for mobile */
+                display: inline-block;
+                margin: 0 5px;
+            }
+
+            .logo2 {
+                float: right;
+            }
         }
     </style>
 </head>
