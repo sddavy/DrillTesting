@@ -37,21 +37,25 @@
             margin-top: 60px;
             font-size: 1.8rem;
         }
+
+        /* Logo container for flex layout */
+        .logo-container {
+            display: flex;
+            justify-content: space-between; /* Space between logos */
+            align-items: center; /* Center vertically */
+            margin-bottom: 20px; /* Add margin below the logo container */
+        }
+
         .logo, .logo2 {
             width: 90px; /* Reduced logo size for smaller screens */
         }
+        
         /* Layout for larger screens */
         .logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 110px; /* Reduced logo size for smaller screens */
+            width: 110px; /* Standard logo size for larger screens */
         }
         .logo2 {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 110px; /* Reduced logo size for smaller screens */
+            width: 110px; /* Standard logo size for larger screens */
         }
 
         /* Footer styles */
@@ -89,20 +93,15 @@
 
             .logo, .logo2 {
                 width: 60px; /* Reduce logo size further on mobile */
-                position: static; /* Remove absolute positioning for mobile */
-                display: inline-block;
-                margin: 0 5px;
-            }
-
-            .logo2 {
-                float: right;
             }
         }
     </style>
 </head>
 <body>
-    <img src="logo.png" alt="Logo" class="logo">
-    <img src="logo2.png" alt="Logo2" class="logo2">
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="logo">
+        <img src="logo2.png" alt="Logo2" class="logo2">
+    </div>
 
     <h1>Civil Air Patrol Online Drill Testing</h1>
     <h2>Drill Tests</h2>
