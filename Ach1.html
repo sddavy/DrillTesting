@@ -15,11 +15,13 @@
         }
         label {
             font-weight: bold;
+            display: block; /* Changed to block for vertical stacking */
+            margin: 10px 0 5px; /* Added margin for spacing */
         }
         input[type="text"], input[type="date"] {
             width: 200px;
             padding: 5px;
-            margin-top: 5px;
+            margin-bottom: 20px; /* Margin for spacing between fields */
         }
         .question {
             margin-bottom: 20px;
@@ -105,7 +107,7 @@
             text-decoration: underline;
         }
     </style>
- <!-- Include jsPDF library -->
+    <!-- Include jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         function calculateResults() {
@@ -136,7 +138,7 @@
             let resultMessage = '';
             let resultClass = '';
 
-            if (percentage >= 73) {
+            if (percentage >= 61.11) {
                 resultMessage = `Passed - Number Correct: ${correctAnswers}`;
                 resultClass = 'passed';
             } else {
