@@ -8,6 +8,10 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            display: flex;
+            flex-direction: column; /* Use flexbox for layout */
+            min-height: 100vh; /* Ensure body takes at least full viewport height */
+            justify-content: space-between; /* Push footer to the bottom */
         }
         a {
             display: block;
@@ -44,6 +48,14 @@
             position: absolute;
             top: 20px;
             right: 20px;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #001489; /* Blue background */
+            color: white; /* White text */
+            text-align: center; /* Centered text */
+            padding: 10px; /* Padding for spacing */
         }
 
         /* Media query for mobile screens */
@@ -94,6 +106,10 @@
     <a href="Ach5.html">Achievement 5</a>
     <a href="Ach6.html">Achievement 6</a>
     <a href="Ach7.html">Achievement 7</a>
-    <a href="Ach8.html">Achievement 8</a>
+    <a href="Ach8.html">Achievement 8</a">
+
+    <footer>
+        © 2024 Civil Air Patrol. All rights reserved.
+    </footer>
 </body>
 </html>
