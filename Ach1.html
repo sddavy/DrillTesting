@@ -105,11 +105,11 @@
             text-decoration: underline;
         }
     </style>
-    <!-- Include jsPDF library -->
+ <!-- Include jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         function calculateResults() {
-            const totalQuestions = 18; // Updated total number of questions
+            const totalQuestions = 18; // Total number of questions
             let correctAnswers = 0;
             let totalAnswered = 0;
 
@@ -194,7 +194,7 @@
                     currentY = 20;
                 }
 
-                doc.text(`${questionLabel} ${answer}`, 20, currentY);
+                doc.text(`${questionLabel}: ${answer}`, 20, currentY);
                 currentY += 10;
             });
 
@@ -207,13 +207,13 @@
     
     <!-- Personal Information -->
     <div style="text-align: center; margin-bottom: 30px;">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" required><br><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
         
-        <label for="date">Date:</label><br>
-        <input type="date" id="date" required><br><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" required>
         
-        <label for="tested-by">Tested by:</label><br>
+        <label for="tested-by">Tested by:</label>
         <input type="text" id="tested-by" required>
     </div>
     
