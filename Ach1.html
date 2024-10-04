@@ -110,49 +110,62 @@
     <!-- Include jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-        function calculateResults() {
-            const totalQuestions = 18; // Total number of questions
-            let correctAnswers = 0;
-            let totalAnswered = 0;
+function calculateResults() {
+    const totalQuestions = 20; // Total number of questions
+    let correctAnswers = 0;
+    let totalAnswered = 0;
 
-            const questions = document.querySelectorAll('.question');
-            questions.forEach((question, index) => {
-                const correctRadio = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`);
-                const incorrectRadio = question.querySelector(`input[name="q${index + 1}"][data-correct="false"]`);
+    // Select all the question elements
+    const questions = document.querySelectorAll('.question');
 
-                if (correctRadio.checked || incorrectRadio.checked) {
-                    totalAnswered += 1;
-                }
+    // Loop through each question
+    questions.forEach((question, index) => {
+        // Get the correct and incorrect radio buttons for this question
+        const correctRadio = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`);
+        const selectedRadio = question.querySelector(`input[name="q${index + 1}"]:checked`);
 
-                if (correctRadio.checked) {
-                    correctAnswers += 1;
-                }
-            });
+        // If the user selected an answer, increase the totalAnswered count
+        if (selectedRadio) {
+            totalAnswered += 1;
 
-            if (totalAnswered !== totalQuestions) {
-                alert(`You have answered ${totalAnswered} out of ${totalQuestions} questions. Please answer all questions.`);
-                return;
+            // If the correct answer is selected, increase the correctAnswers count
+            if (correctRadio && correctRadio.checked) {
+                correctAnswers += 1;
             }
+        }
+    });
 
-            const percentage = (correctAnswers / totalQuestions) * 100;
-            let resultMessage = '';
-            let resultClass = '';
+    // Check if all questions are answered
+    if (totalAnswered !== totalQuestions) {
+        alert(`You have answered ${totalAnswered} out of ${totalQuestions} questions. Please answer all questions.`);
+        return;
+    }
 
-            if (percentage >= 61.11) {
-                resultMessage = `Passed - Number Correct: ${correctAnswers}`;
-                resultClass = 'passed';
-            } else {
-                resultMessage = `Failed - Number Correct: ${correctAnswers}`;
-                resultClass = 'not-passed';
-            }
+    // Calculate percentage of correct answers
+    const percentage = (correctAnswers / totalQuestions) * 100;
+    let resultMessage = '';
+    let resultClass = '';
 
-            document.getElementById('total-correct').textContent = correctAnswers;
-            document.getElementById('total-incorrect').textContent = totalQuestions - correctAnswers;
-            const resultElement = document.getElementById('result');
-            resultElement.textContent = resultMessage;
-            resultElement.className = `result-text ${resultClass}`;
+    // Determine pass/fail based on percentage
+    if (percentage >= 80) {
+        resultMessage = `Passed - Number Correct: ${correctAnswers}`;
+        resultClass = 'passed';
+    } else {
+        resultMessage = `Failed - Number Correct: ${correctAnswers}`;
+        resultClass = 'not-passed';
+    }
 
-            resultElement.scrollIntoView({ behavior: 'smooth' });
+    // Update the result text and class for displaying the result
+    document.getElementById('total-correct').textContent = correctAnswers;
+    document.getElementById('total-incorrect').textContent = totalQuestions - correctAnswers;
+    const resultElement = document.getElementById('result');
+    resultElement.textContent = resultMessage;
+    resultElement.className = `result-text ${resultClass}`;
+
+    // Scroll to the result area smoothly
+    resultElement.scrollIntoView({ behavior: 'smooth' });
+}
+
         }
 
         function generatePDF() {
