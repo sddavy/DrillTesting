@@ -9,26 +9,28 @@
             font-family: Arial, sans-serif;
             margin: 20px;
             display: flex;
-            flex-direction: column; /* Use flexbox for layout */
-            min-height: 100vh; /* Ensure body takes at least full viewport height */
-            justify-content: space-between; /* Push footer to the bottom */
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body covers the full height of the viewport */
         }
         a {
             display: block;
-            margin: 10px 0;
             text-decoration: none;
             color: #001489;
             font-size: 1.2rem; /* Increased font size for readability on mobile */
+            margin: 0; /* Remove margins to eliminate gaps */
+            padding: 8px; /* Add padding for better touch targets */
+            border-radius: 4px; /* Optional: Adds slight rounding for links */
         }
         a:hover {
             text-decoration: underline;
+            background-color: #f0f0f0; /* Optional: Change background on hover */
         }
         h1 {
             margin-top: 140px;
             font-size: 2rem;
             background-color: #cecece; /* Light grey background */
             padding: 6px; /* Add padding for better spacing */
-            border-radius: 8px; /* Optional: Adds rounded corners */
+            border-radius: 8px; /* Rounded corners for header */
             text-align: center;
         }
         h2 {
@@ -52,10 +54,12 @@
 
         /* Footer styles */
         footer {
-            background-color: #001489; /* Blue background */
-            color: white; /* White text */
+            background-color: blue; /* Blue background for footer */
+            color: white; /* White text color */
             text-align: center; /* Centered text */
-            padding: 10px; /* Padding for spacing */
+            padding: 10px; /* Padding for footer */
+            border-radius: 8px; /* Rounded corners for footer */
+            margin-top: auto; /* Pushes footer to the bottom */
         }
 
         /* Media query for mobile screens */
@@ -76,7 +80,7 @@
 
             a {
                 font-size: 1rem; /* Adjust font size for links */
-                margin: 8px 0;
+                padding: 6px; /* Reduced padding for smaller screens */
             }
 
             .logo, .logo2 {
@@ -106,10 +110,10 @@
     <a href="Ach5.html">Achievement 5</a>
     <a href="Ach6.html">Achievement 6</a>
     <a href="Ach7.html">Achievement 7</a>
-    <a href="Ach8.html">Achievement 8</a">
+    <a href="Ach8.html">Achievement 8</a>
 
     <footer>
-        © 2024 Civil Air Patrol. All rights reserved.
+        <p>© 2024 Civil Air Patrol</p>
     </footer>
 </body>
 </html>
