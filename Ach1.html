@@ -164,10 +164,9 @@
 
     // Scroll to the result area smoothly
     resultElement.scrollIntoView({ behavior: 'smooth' });
-}
-</script>
-        }
-
+    }
+    
+    </script>
         function generatePDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
@@ -214,7 +213,7 @@
             });
 
             doc.save(`Achievement1DrillTest_${name}.pdf`);
-        }
+        
     </script>
 </head>
 <body>
