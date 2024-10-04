@@ -55,17 +55,29 @@
         }
         /* Submit Button */
         #submit-btn {
-            background-color: #001489; /* Submit button color */
+            background-color: #007BFF; /* Blue color */
         }
+
         #submit-btn:hover {
-            background-color: #000d6b; /* Darker shade for hover */
+            background-color: #0056b3; /* Darker blue on hover */
         }
+
         /* Download Button */
         #download-btn {
-            background-color: #b51818; /* Download button color */
+            background-color: #007BFF; /* Blue color */
         }
+
         #download-btn:hover {
-            background-color: #9e1414; /* Darker shade for hover */
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Home Button */
+        .home-btn {
+            background-color: #b51818; /* Red color */
+        }
+
+        .home-btn:hover {
+            background-color: #9e1414; /* Darker red on hover */
         }
         .result-text {
             font-size: 24px;
@@ -454,7 +466,7 @@
     </div>
     <hr>
     
- <h3>Test Results</h3>
+<h3>Test Results</h3>
     <p>Total Correct: <span id="total-correct">0</span></p>
     <p>Total Incorrect: <span id="total-incorrect">0</span></p>
 
@@ -463,10 +475,10 @@
     <button id="download-btn" onclick="generatePDF()">Download PDF</button>
 
     <div style="text-align: center; margin-top: 30px;">
-        <a href="index.html">
-            <button>Return to Home</button>
-        </a>
+        <button class="home-btn" onclick="window.location.href='index.html'">Return to Home</button>
     </div>
 
+</body>
+</html>
 </body>
 </html>
