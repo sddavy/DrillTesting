@@ -70,6 +70,14 @@
             margin-top: auto; /* Pushes footer to the bottom */
         }
 
+        /* Light grey text below the footer */
+        .small-text {
+            font-size: 0.8rem; /* Smaller font size */
+            color: lightgrey; /* Light grey text color */
+            text-align: center; /* Centered text */
+            padding: 5px; /* Padding for better spacing */
+        }
+
         /* Media query for mobile screens */
         @media (max-width: 600px) {
             body {
@@ -89,6 +97,11 @@
             a {
                 font-size: 1rem; /* Adjust font size for links */
                 padding: 6px; /* Reduced padding for smaller screens */
+            }
+
+            /* Add space after the last link */
+            a:last-child {
+                margin-bottom: 30px; /* Add space below the last link */
             }
 
             .logo, .logo2 {
@@ -116,7 +129,13 @@
     <a href="Ach8.html">Achievement 8</a>
 
     <footer>
-        <p>© 2024 Civil Air Patrol</p>
+        <p>Parker Composite Squadron</p>
     </footer>
+
+    <!-- Light grey small text below the footer -->
+    <div class="small-text">
+        Made by C/CMSgt. Samuel Davy
+        © 2024 Civil Air Patrol, All Rights Reserved
+    </div>
 </body>
 </html>
