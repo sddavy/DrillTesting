@@ -49,13 +49,23 @@
             margin: 10px 5px 20px 5px;
             font-size: 16px;
             cursor: pointer;
-            background-color: #001489
             color: white;
             border: none;
             border-radius: 5px;
         }
-        button:hover {
-            background-color: #001489
+        /* Submit Button */
+        #submit-btn {
+            background-color: #001489; /* Submit button color */
+        }
+        #submit-btn:hover {
+            background-color: #000d6b; /* Darker shade for hover */
+        }
+        /* Download Button */
+        #download-btn {
+            background-color: #b51818; /* Download button color */
+        }
+        #download-btn:hover {
+            background-color: #9e1414; /* Darker shade for hover */
         }
         .result-text {
             font-size: 24px;
@@ -77,7 +87,7 @@
             text-align: center;
             margin-top: 30px;
             text-decoration: none;
-            color: #001489;
+            color: #007BFF;
         }
         a:hover {
             text-decoration: underline;
@@ -444,20 +454,19 @@
     </div>
     <hr>
     
-<h3>Test Results</h3>
-<p>Total Correct: <span id="total-correct">0</span></p>
-<p>Total Incorrect: <span id="total-incorrect">0</span></p>
+ <h3>Test Results</h3>
+    <p>Total Correct: <span id="total-correct">0</span></p>
+    <p>Total Incorrect: <span id="total-incorrect">0</span></p>
 
-<div id="result" class="result-text"></div>
-<button onclick="calculateResults()">Submit</button>
-<button onclick="generatePDF()">Download PDF</button>
+    <div id="result" class="result-text"></div>
+    <button id="submit-btn" onclick="calculateResults()">Submit</button>
+    <button id="download-btn" onclick="generatePDF()">Download PDF</button>
 
-<div style="text-align: center; margin-top: 30px;">
-    <a href="index.html">
-        <button>Return to Home</button>
-    </a>
-</div>
-
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="index.html">
+            <button>Return to Home</button>
+        </a>
+    </div>
 
 </body>
 </html>
