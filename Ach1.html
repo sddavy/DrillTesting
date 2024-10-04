@@ -110,27 +110,27 @@
     <!-- Include jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-function calculateResults() {
-    const totalQuestions = 20; // Total number of questions
-    let correctAnswers = 0;
-    let totalAnswered = 0;
-
-    // Select all the question elements
-    const questions = document.querySelectorAll('.question');
-
-    // Loop through each question
-    questions.forEach((question, index) => {
-        // Get the correct and incorrect radio buttons for this question
-        const correctRadio = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`);
-        const selectedRadio = question.querySelector(`input[name="q${index + 1}"]:checked`);
-
-        // If the user selected an answer, increase the totalAnswered count
-        if (selectedRadio) {
+    function calculateResults() {
+        const totalQuestions = 18; // Updated to the actual number of questions
+        let correctAnswers = 0;
+        let totalAnswered = 0;
+    
+        // Select all the question elements
+        const questions = document.querySelectorAll('.question');
+    
+        // Loop through each question
+        questions.forEach((question, index) => {
+            // Get the correct and incorrect radio buttons for this question
+            const correctRadio = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`);
+            const selectedRadio = question.querySelector(`input[name="q${index + 1}"]:checked`);
+    
+            // If the user selected an answer, increase the totalAnswered count
+            if (selectedRadio) {
             totalAnswered += 1;
 
-            // If the correct answer is selected, increase the correctAnswers count
-            if (correctRadio && correctRadio.checked) {
-                correctAnswers += 1;
+                // If the correct answer is selected, increase the correctAnswers count
+             if (correctRadio && correctRadio.checked) {
+            correctAnswers += 1;
             }
         }
     });
@@ -165,7 +165,7 @@ function calculateResults() {
     // Scroll to the result area smoothly
     resultElement.scrollIntoView({ behavior: 'smooth' });
 }
-
+</script>
         }
 
         function generatePDF() {
@@ -511,7 +511,5 @@ function calculateResults() {
         <button class="home-btn" onclick="window.location.href='index.html'">Return to Home</button>
     </div>
 
-</body>
-</html>
 </body>
 </html>
