@@ -165,52 +165,53 @@
     // Scroll to the result area smoothly
     resultElement.scrollIntoView({ behavior: 'smooth' });
     }
-        function generatePDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-
-            const name = document.getElementById('name').value || 'N/A';
-            const date = document.getElementById('date').value || 'N/A';
-            const testedBy = document.getElementById('tested-by').value || 'N/A';
-            const totalCorrect = document.getElementById('total-correct').textContent;
-            const totalIncorrect = document.getElementById('total-incorrect').textContent;
-            const result = document.getElementById('result').textContent;
-
-            doc.setFontSize(18);
-            doc.text('Achievement 1 Drill & Ceremonies Practical Test', 105, 20, { align: 'center' });
-
-            doc.setFontSize(12);
-            doc.text(`Name: ${name}`, 20, 30);
-            doc.text(`Date: ${date}`, 20, 40);
-            doc.text(`Tested by: ${testedBy}`, 20, 50);
-
-            doc.text(`Total Correct: ${totalCorrect}`, 20, 60);
-            doc.text(`Total Incorrect: ${totalIncorrect}`, 20, 70);
-            doc.text(`Result: ${result}`, 20, 80);
-
-            doc.setFontSize(14);
-            doc.text('Questions and Answers:', 20, 90);
-
-            doc.setFontSize(12);
-            let currentY = 100;
-
-            const questions = document.querySelectorAll('.question');
-            questions.forEach((question, index) => {
-                const questionLabel = question.querySelector('label').textContent;
-                const qualifications = question.querySelector('.qualifications').innerText;
-                const correctChecked = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`).checked;
-                const answer = correctChecked ? 'Correct' : 'Incorrect';
-
-                if (currentY > 280) {
-                    doc.addPage();
-                    currentY = 20;
-                }
-
-                doc.text(`${questionLabel}: ${answer}`, 20, currentY);
-                currentY += 10;
-            });
-
-            doc.save(`Achievement1DrillTest_${name}.pdf`);        
+    function generatePDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+    
+        const name = document.getElementById('name').value || 'N/A';
+        const date = document.getElementById('date').value || 'N/A';
+        const testedBy = document.getElementById('tested-by').value || 'N/A';
+        const totalCorrect = document.getElementById('total-correct').textContent;
+        const totalIncorrect = document.getElementById('total-incorrect').textContent;
+        const result = document.getElementById('result').textContent;
+    
+        doc.setFontSize(18);
+        doc.text('Achievement 1 Drill & Ceremonies Practical Test', 105, 20, { align: 'center' });
+    
+        doc.setFontSize(12);
+        doc.text(`Name: ${name}`, 20, 30);
+        doc.text(`Date: ${date}`, 20, 40);
+        doc.text(`Tested by: ${testedBy}`, 20, 50);
+    
+        doc.text(`Total Correct: ${totalCorrect}`, 20, 60);
+        doc.text(`Total Incorrect: ${totalIncorrect}`, 20, 70);
+        doc.text(`Result: ${result}`, 20, 80);
+    
+        doc.setFontSize(14);
+        doc.text('Questions and Answers:', 20, 90);
+    
+        doc.setFontSize(12);
+        let currentY = 100;
+    
+        const questions = document.querySelectorAll('.question');
+        questions.forEach((question, index) => {
+            const questionLabel = question.querySelector('label').textContent;
+            const correctChecked = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`).checked;
+            const answer = correctChecked ? 'Correct' : 'Incorrect';
+    
+            if (currentY > 280) {
+                doc.addPage();
+                currentY = 20;
+            }
+    
+            doc.text(`${questionLabel}: ${answer}`, 20, currentY);
+            currentY += 10;
+        });
+    
+        doc.save(`Achievement1DrillTest_${name}.pdf`);  // This was missing
+    }
+    </script>
 
 </head>
 <body>
