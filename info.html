@@ -55,8 +55,8 @@
             padding: 10px;
         }
 
-        /* Blue button styled to match the index page */
-        .blue-btn {
+        /* Blue buttons styled to match the index page */
+        .blue-btn, .contact-btn {
             display: inline-block;
             background-color: #c72f2f; /* Matching red color */
             color: white;
@@ -65,10 +65,11 @@
             text-align: center;
             border-radius: 5px;
             text-decoration: none;
-            margin-top: 20px;
-            margin-bottom: 20px; /* Space between button and footer */
+            margin-top: 5px; /* Small margin between the buttons */
+            margin-bottom: 5px; /* Space between button and footer */
         }
-        .blue-btn:hover {
+
+        .blue-btn:hover, .contact-btn:hover {
             background-color: #8b1414;
         }
 
@@ -102,8 +103,9 @@
     <p>Here, you can find details about the testing procedures, the types of questions, and more.</p>
     <p>Please contact your squadron leader for any further details regarding the drill tests.</p>
 
-    <!-- Button to return to home page -->
+    <!-- Buttons to return to home page and contact page, stacked above the footer -->
     <a href="index.html" class="blue-btn">Return to Home</a>
+    <a href="contact.html" class="contact-btn">Contact Us</a>
 
     <footer>
         <p>Parker Composite Squadron</p>
