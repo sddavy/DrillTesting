@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        h1 {
+            margin-top: 10px;
+            font-size: 2rem;
+            background-color: #cecece;
+            padding: 6px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Logo container for flex layout */
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .logo, .logo2 {
+            width: 110px;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #001489;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .small-text {
+            font-size: 0.8rem;
+            color: #cecece;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Button for returning home */
+        .blue-btn {
+            display: inline-block;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .blue-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Media query for mobile screens */
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                margin-top: 10px;
+            }
+
+            .logo, .logo2 {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="logo">
+        <img src="logo2.png" alt="Logo2" class="logo2">
+    </div>
+
+    <h1>Civil Air Patrol Online Drill Testing</h1>
+
+    <!-- Page content -->
+    <p>This is the information page for the Civil Air Patrol Online Drill Testing.</p>
+    <p>Here, you can find details about the testing procedures, the types of questions, and more.</p>
+    <p>Please contact your squadron leader for any further details regarding the drill tests.</p>
+
+    <!-- Button to return to home page -->
+    <a href="index.html" class="blue-btn">Return to Home</a>
+
+    <footer>
+        <p>Parker Composite Squadron</p>
+    </footer>
+
+    <div class="small-text">
+        Made by C/CMSgt. Samuel Davy <br>
+        <br>
+        © 2024 Civil Air Patrol, All Rights Reserved
+    </div>
+</body>
+</html>
 
