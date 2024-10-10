@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="0; url=index.html">
+    <script>
+        // Redirect to the email client
+        window.onload = function() {
+            window.location.href = "mailto:samuel.davy@icloud.com";
+        }
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,22 +19,10 @@
         p {
             font-size: 1.5rem;
         }
-        a {
-            color: #001489;
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
-
-    <p>You are being redirected to the main page...</p>
-    <p>If you are not redirected automatically, <a href="index.html">click here</a>.</p>
-    <p>For more information, contact: <a href="mailto:samuel.davy@icloud.com">samuel.davy@icloud.com</a></p>
-
+    <p>Redirecting you to your email client...</p>
+    <p>If you are not redirected automatically, <a href="mailto:samuel.davy@icloud.com">click here to send an email.</a></p>
 </body>
 </html>
-
