@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Me</title>
+    <title>Redirecting...</title>
+    <script>
+        // Redirect to the email client after a brief delay
+        window.onload = function() {
+            setTimeout(function() {
+                window.location.href = "mailto:samuel.davy@icloud.com";
+            }, 1000); // 1 second delay
+        }
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,19 +21,10 @@
         p {
             font-size: 1.5rem;
         }
-        a {
-            color: #007BFF;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
-    <p>If you would like to contact the website administrator, contact C/CMSgt. Davy at:</p>
-    <p><a href="mailto:samuel.davy@icloud.com">samuel.davy@icloud.com</a></p>
-    <p>You can also return to the main page by clicking <a href="index.html">here</a>.</p>
+    <p>Redirecting you to your email client...</p>
+    <p>If you are not redirected automatically, <a href="mailto:samuel.davy@icloud.com">click here to send an email.</a></p>
 </body>
 </html>
