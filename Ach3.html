@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achievement 1 Drill Test</title>
+    <title>Achievement 3 Drill Test</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,11 +15,13 @@
         }
         label {
             font-weight: bold;
+            display: block; /* Changed to block for vertical stacking */
+            margin: 10px 0 5px; /* Added margin for spacing */
         }
         input[type="text"], input[type="date"] {
             width: 200px;
             padding: 5px;
-            margin-top: 5px;
+            margin-bottom: 20px; /* Margin for spacing between fields */
         }
         .question {
             margin-bottom: 20px;
@@ -49,13 +51,35 @@
             margin: 10px 5px 20px 5px;
             font-size: 16px;
             cursor: pointer;
-            background-color: #007BFF;
             color: white;
             border: none;
             border-radius: 5px;
         }
-        button:hover {
-            background-color: #0056b3;
+        /* Submit Button */
+        #submit-btn {
+            background-color: #001489; /* Blue color */
+        }
+
+        #submit-btn:hover {
+            background-color: #010f61; /* Darker blue on hover */
+        }
+
+        /* Download Button */
+        #download-btn {
+            background-color: #001489; /* Blue color */
+        }
+
+        #download-btn:hover {
+            background-color: #010f61; /* Darker blue on hover */
+        }
+
+        /* Home Button */
+        .home-btn {
+            background-color: #c72f2f; /* Red color */
+        }
+
+        .home-btn:hover {
+            background-color: #8b1414; /* Darker red on hover */
         }
         .result-text {
             font-size: 24px;
@@ -86,51 +110,61 @@
     <!-- Include jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-        function calculateResults() {
-            const totalQuestions = 15; // Updated total number of questions
-            let correctAnswers = 0;
-            let totalAnswered = 0;
+    function calculateResults() {
+        const totalQuestions = 29; // Updated to the actual number of questions
+        let correctAnswers = 0;
+        let totalAnswered = 0;
+    
+        // Select all the question elements
+        const questions = document.querySelectorAll('.question');
+    
+        // Loop through each question
+        questions.forEach((question, index) => {
+            // Get the correct and incorrect radio buttons for this question
+            const correctRadio = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`);
+            const selectedRadio = question.querySelector(`input[name="q${index + 1}"]:checked`);
+    
+            // If the user selected an answer, increase the totalAnswered count
+            if (selectedRadio) {
+            totalAnswered += 1;
 
-            const questions = document.querySelectorAll('.question');
-            questions.forEach((question, index) => {
-                const correctRadio = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`);
-                const incorrectRadio = question.querySelector(`input[name="q${index + 1}"][data-correct="false"]`);
-
-                if (correctRadio.checked || incorrectRadio.checked) {
-                    totalAnswered += 1;
-                }
-
-                if (correctRadio.checked) {
-                    correctAnswers += 1;
-                }
-            });
-
-            if (totalAnswered !== totalQuestions) {
-                alert(`You have answered ${totalAnswered} out of ${totalQuestions} questions. Please answer all questions.`);
-                return;
+                // If the correct answer is selected, increase the correctAnswers count
+             if (correctRadio && correctRadio.checked) {
+            correctAnswers += 1;
             }
-
-            const percentage = (correctAnswers / totalQuestions) * 100;
-            let resultMessage = '';
-            let resultClass = '';
-
-            if (percentage >= 73) {
-                resultMessage = `Passed - Number Correct: ${correctAnswers}`;
-                resultClass = 'passed';
-            } else {
-                resultMessage = `Failed - Number Correct: ${correctAnswers}`;
-                resultClass = 'not-passed';
-            }
-
-            document.getElementById('total-correct').textContent = correctAnswers;
-            document.getElementById('total-incorrect').textContent = totalQuestions - correctAnswers;
-            const resultElement = document.getElementById('result');
-            resultElement.textContent = resultMessage;
-            resultElement.className = `result-text ${resultClass}`;
-
-            resultElement.scrollIntoView({ behavior: 'smooth' });
         }
+    });
 
+    // Check if all questions are answered
+    if (totalAnswered !== totalQuestions) {
+        alert(`You have answered ${totalAnswered} out of ${totalQuestions} questions. Please answer all questions.`);
+        return;
+    }
+
+    // Calculate percentage of correct answers
+    const percentage = (correctAnswers / totalQuestions) * 100;
+    let resultMessage = '';
+    let resultClass = '';
+
+    // Determine pass/fail based on percentage
+    if (percentage >= 80) {
+        resultMessage = `Passed - Number Correct: ${correctAnswers}`;
+        resultClass = 'passed';
+    } else {
+        resultMessage = `Failed - Number Correct: ${correctAnswers}`;
+        resultClass = 'not-passed';
+    }
+
+    // Update the result text and class for displaying the result
+    document.getElementById('total-correct').textContent = correctAnswers;
+    document.getElementById('total-incorrect').textContent = totalQuestions - correctAnswers;
+    const resultElement = document.getElementById('result');
+    resultElement.textContent = resultMessage;
+    resultElement.className = `result-text ${resultClass}`;
+
+    // Scroll to the result area smoothly
+    resultElement.scrollIntoView({ behavior: 'smooth' });
+    }
         function generatePDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
@@ -143,7 +177,7 @@
             const result = document.getElementById('result').textContent;
 
             doc.setFontSize(18);
-            doc.text('Achievement 1 Drill & Ceremonies Practical Test', 105, 20, { align: 'center' });
+            doc.text('Achievement 3 Drill & Ceremonies Practical Test', 105, 20, { align: 'center' });
 
             doc.setFontSize(12);
             doc.text(`Name: ${name}`, 20, 30);
@@ -172,40 +206,47 @@
                     currentY = 20;
                 }
 
-                doc.text(`${questionLabel} ${answer}`, 20, currentY);
+                doc.text(`${questionLabel}: ${answer}`, 20, currentY);
                 currentY += 10;
             });
 
-            doc.save(`Achievement1DrillTest_${name}.pdf`);
+            doc.save(`Achievement3DrillTest_${name}.pdf`);
         }
     </script>
 </head>
 <body>
-    <h1>Achievement 1 Drill & Ceremonies Practical Test</h1>
+    <h1>Achievement 3 Drill & Ceremonies Practical Test</h1>
     
     <!-- Personal Information -->
     <div style="text-align: center; margin-bottom: 30px;">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" required><br><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
         
-        <label for="date">Date:</label><br>
-        <input type="date" id="date" required><br><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" required>
         
-        <label for="tested-by">Tested by:</label><br>
+        <label for="tested-by">Tested by:</label>
         <input type="text" id="tested-by" required>
     </div>
     
     <h2>Questions</h2>
     <hr>
+
+    <!-- Block of text before questions -->
+    <div style="text-align: left; margin-bottom: 30px;">
+        <p>Topic: Advanced Drill as a Flight Member</p>
+        <p>Conditions: Form at least 6 cadets into a flight of 2 elements. Graded cadet will be 1st element leader.</p>
+        <p>Passing Score: 75%. Must perform at least 16 out of 19 commands satisfactorily</p>
+    </div>
+
     
     <!-- Question 1 -->
     <div class="question">
-        <label>FALL IN</label>
+        <label>At Close Interval, FALL IN</label>
         <div class="qualifications">
-            Automatically executes Dress Right, DRESS. 1<br>
-            Adjusts position to achieve proper dress.<br>
+            Automatically executes At Close Interval Dress Right, DRESS<br>
             Automatically executes Ready, FRONT.<br>
-            Stands at position of attention.
+            Stands at the position of attention.
         </div>
         <div class="radio-group">
             <label><input type="radio" name="q1" data-correct="false"> Unsatisfactory</label>
@@ -216,87 +257,60 @@
 
     <!-- Question 2 -->
     <div class="question">
-        <label>Parade, REST</label>
+        <label>At Close Interval, Dress Right, DRESS & Ready, FRONT</label>
         <div class="qualifications">
-            Moves left foot such that heels are about 12-inches apart.<br>
-            Extends arms behind body & places right <br>
-            hand in palm of the left hand.<br>
-            Keeps head and eyes straight ahead; is immobile and silent.
+            On DRESS, the left hand placed so the heel of the hand rests on the left hip, fingertips point toward the ground, and the elbow in line with the body.<br>
+            Adjusts as necessary.<br>
+            On FRONT, return to the position of attention.
         </div>
         <div class="radio-group">
-            <label><input type="radio" name="q2" data-correct="false"> Unsatisfactory</label>
             <label><input type="radio" name="q2" data-correct="true"> Satisfactory</label>
+            <label><input type="radio" name="q2" data-correct="true"> Satisfactory</label>            
         </div>
     </div>
     <hr>
 
-    <!-- Question 3 --><!--
+    <!-- Question 3 -->
     <div class="question">
-        <label>Flight, ATTENTION</label>
+        <label>FALL OUT</label>
         <div class="qualifications">
-            Used to return to position of attention; not graded
+            Not graded.
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q3" data-correct="true"> Satisfactory</label>
         </div>
     </div>
-    <hr>-->
+    <hr>
 
     <!-- Question 4 -->
     <div class="question">
-        <label>Present, ARMS</label>
+        <label>FALL IN</label>
         <div class="qualifications">
-            Smartly raises right hand directly to head or headdress<br>
-            Right hand is flat, with fingers fully extended, canted slightly down.
+            Not graded, used to put cadets in line formation at normal interval.
         </div>
         <div class="radio-group">
-            <label><input type="radio" name="q3" data-correct="false"> Unsatisfactory</label>
-            <label><input type="radio" name="q3" data-correct="true"> Satisfactory</label>
+            <label><input type="radio" name="q4" data-correct="true"> Satisfactory</label>
         </div>
     </div>
     <hr>
 
     <!-- Question 5 -->
     <div class="question">
-        <label>Order, ARMS</label>
+        <label>Right, FACE</label>
         <div class="qualifications">
-            Smoothly and smartly retraces path of arm.<br>
-            Ends at the position of attention.
+            Not graded; used to put cadets in column formation.
         </div>
         <div class="radio-group">
-            <label><input type="radio" name="q4" data-correct="false"> Unsatisfactory</label>
-            <label><input type="radio" name="q4" data-correct="true"> Satisfactory</label>
+            <label><input type="radio" name="q5" data-correct="true"> Satisfactory</label>
         </div>
     </div>
     <hr>
 
     <!-- Question 6 -->
     <div class="question">
-        <label>About, FACE</label>
+        <label>Close MARCH (while halted)</label>
         <div class="qualifications">
-            Pivots 180-degress clockwise on the ball of the right foot and heel of the left foot.<br>
-            Maintains upper body in position of attention.
-        </div>
-        <div class="radio-group">
-            <label><input type="radio" name="q5" data-correct="false"> Unsatisfactory</label>
-            <label><input type="radio" name="q5" data-correct="true"> Satisfactory</label>
-        </div>
-    </div>
-    <hr>
-
-    <!-- Question 7 --><!--
-    <div class="question">
-        <label>About, FACE</label>
-        <div class="qualifications">
-            Used to return to line formation; not graded, or use as second chance to perform #5 correctly
-        </div>
-    </div>
-    <hr>-->
-
-    <!-- Question 8 -->
-    <div class="question">
-        <label>Dress Right, DRESS</label>
-        <div class="qualifications">
-            Raises and extends left arm laterally from the shoulder with snap so arm is parallel with the ground, palm down, hand flat.<br>
-            At the same time as left arm is raised, tested cadet turns head 45-degrees to the right.<br>
-            Establishes exact shoulder-to-fingertip contact with the individual to the immediate right.
+            The second element stands fast, the first element takes two 12-inch steps to the right 
         </div>
         <div class="radio-group">
             <label><input type="radio" name="q6" data-correct="false"> Unsatisfactory</label>
@@ -305,12 +319,11 @@
     </div>
     <hr>
 
-    <!-- Question 9 -->
+    <!-- Question 7 -->
     <div class="question">
-        <label>Ready, FRONT</label>
+        <label>Extend, MARCH (while halted)</label>
         <div class="qualifications">
-            Arms are lowered with snap to their sides and hand is cupped when their arm is at approximately waist level. <br>
-            As the arm is lowered, returns head to the front with snap.
+            The second element stands fast, the first element takes two 12-inch steps to the left.
         </div>
         <div class="radio-group">
             <label><input type="radio" name="q7" data-correct="false"> Unsatisfactory</label>
@@ -318,13 +331,17 @@
         </div>
     </div>
     <hr>
-
-    <!-- Question 10 -->
+        
+    <hr>
+    <!-- Question 8 -->
     <div class="question">
-        <label>Right, FACE</label>
+        <label>Column of Files from the Right, Column Right, MARCH </label>
         <div class="qualifications">
-            Pivots 90-degrees to the right on the ball of the left foot and the heel of the right foot.<br>
-            Maintains upper body in position of attention
+            On the preparatory command the element leaders turn their heads 45 degrees to the right. The 2nd element leader commands, Column Right, and the 1st element leader commands STAND FAST.<br>
+            On the command MARCH, the 2nd element leader executes a face in marching to the right, then continues marching in the new direction.<br>
+            The remaining individuals in the 2nd element march forward on the command of execution, pivot in approximately the same location as their element leader, and maintain a 40-inch distance.<br>
+            When the last cadet of the 2nd element passes, the 1st element leader commands Column Right, MARCH on the right foot, at which time all cadets perform the movement in the same manner as the base element.
+
         </div>
         <div class="radio-group">
             <label><input type="radio" name="q8" data-correct="false"> Unsatisfactory</label>
@@ -333,70 +350,48 @@
     </div>
     <hr>
 
-    <!-- Question 11 -->
+    <!-- Question 9 -->
     <div class="question">
-        <label>COVER</label>
+        <label>Flight, HALT</label>
         <div class="qualifications">
-            Adjusts by taking small choppy steps if needed to establish cover and distance.
+            Not graded.
         </div>
         <div class="radio-group">
-            <label><input type="radio" name="q9" data-correct="false"> Unsatisfactory</label>
             <label><input type="radio" name="q9" data-correct="true"> Satisfactory</label>
         </div>
     </div>
     <hr>
 
-    <!-- Question 12 --><!--
+    <!-- Question 10 -->
     <div class="question">
-        <label>Left, FACE</label>
+        <label>- FALL OUT & FALL IN</label>
         <div class="qualifications">
-            Used to return to line formation; not graded, or use as second chance to perform the simple facing of #8 correctly
-        </div>
-    </div>
-    <hr>-->
-
-    <!-- Question 13 -->
-    <div class="question">
-        <label>AT EASE</label>
-        <div class="qualifications">
-            Relaxes in standing position<br>
-            Keeps right foot in place.<br>
-            Silent
+            Not graded; used to take the cadets out of a single file formation and return them to line formation.
         </div>
         <div class="radio-group">
-            <label><input type="radio" name="q10" data-correct="false"> Unsatisfactory</label>
             <label><input type="radio" name="q10" data-correct="true"> Satisfactory</label>
         </div>
     </div>
     <hr>
 
-    <!-- Question 14 -->
+    <!-- Question 11 -->
     <div class="question">
-        <label>Flight, ATTENTION</label>
+        <label>Right, FACE</label>
         <div class="qualifications">
-            Assumes Parade Rest on preparatory command.<br>
-            Remains immobile and silent, hands cupped.
+            Not graded; places the cadets in column formation
         </div>
         <div class="radio-group">
-            <label><input type="radio" name="q11" data-correct="false"> Unsatisfactory</label>
             <label><input type="radio" name="q11" data-correct="true"> Satisfactory</label>
         </div>
     </div>
     <hr>
 
-    <!-- Question 15 -->
+    <!-- Question 12 -->
     <div class="question">
-        <label>Hand, SALUTE</label>
+        <label>Forward, MARCH</label>
         <div class="qualifications">
-            Arm raised smartly.<br>
-            Fingers, palm, and forearm form straight line<br>
-            Upper arm parallel to ground.<br>
-            Tip of middle finger touches the front right corner of headdress <br>
-            Rest of body remains at attention.<br>
-            Arm comes smoothly and smartly down.<br>
-            Retrace path used to raise the arm.<br>
-            Hand is cupped as it passes the waist.<br>
-            End with entire body at attention.
+            Steps off on left foot.<br>
+            Does not anticipate the command of execution.
         </div>
         <div class="radio-group">
             <label><input type="radio" name="q12" data-correct="false"> Unsatisfactory</label>
@@ -405,11 +400,13 @@
     </div>
     <hr>
 
-        <!-- Question 16 -->
+    <!-- Question 13 -->
     <div class="question">
-        <label>Eyes, RIGHT</label>
+        <label>Close, MARCH & Forward, MARCH (while marching)</label>
         <div class="qualifications">
-            Turns their head and eyes smartly 45 degrees to the right. 
+            The 2nd element takes up the half step following the command of execution.<br>
+            The 1st element obtains close interval by pivoting 45 degrees to the right on the ball of the left foot, taking one 24-inch step (with coordinated armswing) toward the 2nd element, and then pivoting 45 degrees back to the left on the ball of the right foot. 1st element takes up the half step.<br>
+            On the command Forward, MARCH, both elements resume a 24-inch step.
         </div>
         <div class="radio-group">
             <label><input type="radio" name="q13" data-correct="false"> Unsatisfactory</label>
@@ -418,11 +415,11 @@
     </div>
     <hr>
 
-        <!-- Question 17 -->
+    <!-- Question 14 -->
     <div class="question">
-        <label>Ready, FRONT</label>
+        <label>Extend, MARCH & Forward, MARCH (while marching)</label>
         <div class="qualifications">
-            On FRONT, heads and eyes are turned smartly to the front.
+            The same procedures and steps used to obtain close interval are used except the command is given on the left foot and the pivots are made on the right foot.
         </div>
         <div class="radio-group">
             <label><input type="radio" name="q14" data-correct="false"> Unsatisfactory</label>
@@ -431,11 +428,13 @@
     </div>
     <hr>
 
-            <!-- Question 18 -->
+    <!-- Question 15 -->
     <div class="question">
-        <label>FALL OUT</label>
+        <label>Change Step, MARCH</label>
         <div class="qualifications">
-            Simply breaks ranks but remains in vicinity.
+            On MARCH, cadets take one 24-inch step with left foot.<br>
+            In one count, cadets place ball of right foot alongside the heel of the left foot, pin their arms, and shift the weight of the body to the right foot.<br>
+            Cadets then step off with the left foot in a full, 24-inch step, resuming coordinated armswing.
         </div>
         <div class="radio-group">
             <label><input type="radio" name="q15" data-correct="false"> Unsatisfactory</label>
@@ -443,21 +442,83 @@
         </div>
     </div>
     <hr>
+
+        <!-- Question 16 -->
+    <div class="question">
+        <label>Column Left, MARCH & Forward MARCH</label>
+        <div class="qualifications">
+            In marching, turns 90-degress to the left.<br>
+            Takes up half step.<br>
+            Resumes full 24-inch steps after Forward, MARCH.
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q16" data-correct="false"> Unsatisfactory</label>
+            <label><input type="radio" name="q16" data-correct="true"> Satisfactory</label>
+        </div>
+    </div>
+    <hr>
+
+        <!-- Question 17 -->
+    <div class="question">
+        <label>Eyes, RIGHT & Ready, FRONT (while marching)</label>
+        <div class="qualifications">
+            On RIGHT, all cadets except those on right flank smartly turn heads 45-degrees right.<br>
+            On FRONT, heads are turned smartly back to front.
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q17" data-correct="false"> Unsatisfactory</label>
+            <label><input type="radio" name="q17" data-correct="true"> Satisfactory</label>
+        </div>
+    </div>
+    <hr>
+
+            <!-- Question 18 -->
+    <div class="question">
+        <label>Flight, HALT</label>
+        <div class="qualifications">
+            After the command HALT, takes one more 24-inch step.<br>
+            Trailing foot is brought smartly alongside front foot.<br>
+            Heels finish together, on line, with cadet at attention.
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q18" data-correct="false"> Unsatisfactory</label>
+            <label><input type="radio" name="q18" data-correct="true"> Satisfactory</label>
+        </div>
+    </div>
+    <hr>
+
+            <!-- Question 19 -->
+    <div class="question">
+        <label>FALL OUT</label>
+        <div class="qualifications">
+            Not graded.
+        </div>
+        <div class="radio-group">
+            <label><input type="radio" name="q19" data-correct="true"> Satisfactory</label>
+        </div>
+    </div>
+    <hr>
+
     
 <h3>Test Results</h3>
-<p>Total Correct: <span id="total-correct">0</span></p>
-<p>Total Incorrect: <span id="total-incorrect">0</span></p>
+    <p>Total Correct: <span id="total-correct">0</span></p>
+    <p>Total Incorrect: <span id="total-incorrect">0</span></p>
 
-<div id="result" class="result-text"></div>
-<button onclick="calculateResults()">Submit</button>
-<button onclick="generatePDF()">Download PDF</button>
+    <div id="result" class="result-text"></div>
+    <button id="submit-btn" onclick="calculateResults()">Submit</button>
+    <button id="download-btn" onclick="generatePDF()">Download PDF</button>
 
-<div style="text-align: center; margin-top: 30px;">
-    <a href="index.html">
-        <button>Return to Home</button>
-    </a>
-</div>
-
-
+    <div style="text-align: center; margin-top: 30px;">
+        <button class="home-btn" onclick="confirmHomeNavigation()">Return to Home</button>
+    </div>
+    <script>
+    function confirmHomeNavigation() {
+        const confirmNavigation = confirm("You have unsaved work. Are you sure you want to return to the home page and lose your progress?");
+        
+        if (confirmNavigation) {
+            window.location.href = 'index.html'; // Redirect to home if the user confirms
+        }
+    }
+    </script>
 </body>
 </html>
