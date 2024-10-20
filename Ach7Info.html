@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information About the Achievement 7 Drill Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .download-btn {
+            background-color: #c72f2f; /* Red color */
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .download-btn:hover {
+            background-color: #8b1414; /* Darker red on hover */
+        }
+        .return-btn {
+            background-color: #001489; /* Blue color */
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .return-btn:hover {
+            background-color: #010f61; /* Darker blue on hover */
+        }
+    </style>
+    <script>
+        function downloadPDF() {
+            const link = document.createElement('a');
+            link.href = './Ach7.pdf';  // Path to your PDF file
+            link.download = 'Ach7.pdf'; // The file name when downloaded
+            link.click();
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Achievement 7 Drill Test</h1>
+    <p>This page contains important information regarding your upcoming drill test.</p>
+    <p>Please ensure you download the necessary materials and review them thoroughly.</p>
+
+    <div class="button-container">
+        <button class="download-btn" onclick="downloadPDF()">Download Drill Tests</button>
+        <button class="return-btn" onclick="window.location.href='Ach7.html'">Return</button>
+    </div>
+</body>
+</html>
