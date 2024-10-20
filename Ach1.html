@@ -6,17 +6,6 @@
     <title>Achievement 1 Drill Test</title>
     <style>
 
-.download-static-pdf-btn {
-    background-color: #001489; /* Blue color */
-    color: white;
-    padding: 10px 20px;
-    margin: 10px 5px 20px 5px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-}
-
 .download-static-pdf-btn:hover {
     background-color: #010f61; /* Darker blue on hover */
 }
@@ -125,6 +114,13 @@
     <!-- Include jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
+    function downloadStaticPDF() {
+        const pdfPath = './Ach1.pdf';  // Assuming the PDF is in the root folder
+        const link = document.createElement('a');
+        link.href = pdfPath;
+        link.download = 'Ach1Blank.pdf';  // The file name when downloaded
+        link.click();
+    }
     function calculateResults() {
         const totalQuestions = 18; // Updated to the actual number of questions
         let correctAnswers = 0;
@@ -518,11 +514,8 @@
     <div id="result" class="result-text"></div>
     <button id="submit-btn" onclick="calculateResults()">Submit</button>
     <button id="download-btn" onclick="generatePDF()">Download PDF</button>
-    
-            <!-- Download Static PDF Button -->
-    <a href="Ach1.pdf" download>
-        <button class="download-static-pdf-btn">Download Static PDF</button>
-    </a>
+    <button id="blank-drill-btn" onclick="downloadStaticPDF()">Download Blank Drill Test</button>
+
 
     <div style="text-align: center; margin-top: 30px;">
         <button class="home-btn" onclick="confirmHomeNavigation()">Return to Home</button>
