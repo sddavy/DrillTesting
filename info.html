@@ -40,6 +40,10 @@
             text-align: center;
             padding: 10px; /* Footer padding */
             border-radius: 8px;
+            margin-top: auto; /* Push footer to the bottom */
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
         }
 
         footer p {
@@ -64,7 +68,8 @@
             text-align: center;
             border-radius: 5px;
             text-decoration: none;
-            margin-bottom: 5px; /* Space between button and footer */
+            margin: 0; /* Remove existing margins */
+            margin-bottom: 5px; /* Set margin-bottom to 5px */
         }
 
         .blue-btn:hover, .contact-btn:hover {
@@ -102,8 +107,10 @@
     <p>For questions, concerns, or to report problems, please contact the website administrator.</p>
 
     <!-- Buttons to return to home page and contact page, stacked above the footer -->
-    <a href="index.html" class="blue-btn">Return to Home</a>
-    <a href="contact.html" class="contact-btn">Contact Administrator</a>
+    <div class="button-container">
+        <a href="index.html" class="blue-btn">Return to Home</a>
+        <a href="contact.html" class="contact-btn">Contact Administrator</a>
+    </div>
 
     <footer>
         <p>Parker Composite Squadron</p>
