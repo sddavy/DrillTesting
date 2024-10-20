@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievement 4 Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .question-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .question-item label {
+            margin-left: 10px;
+        }
+        #return-btn {
+            display: none;
+            padding: 10px 20px;
+            background-color: #001489; /* Blue color */
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #return-btn:hover {
+            background-color: #010f61; /* Darker blue on hover */
+        }
+        .info-text {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Questions:</h1>
+
+    <div class="info-text">
+        <p>Call the following command to an element of at least two people</p>
+        <p>You are judged on Knowledge, Timing, Voice, Bearing, and Overall Leadership.</p>
+        <p>Once you have peformed a commnad, check the box next to it. Once all of them are checked, hand this back to your Testing Officer</p>
+    </div>
+
+    <div class="question-item">
+        <input type="checkbox" id="q1" onclick="checkAllChecked()">
+        <label for="q1">FALL IN</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q2" onclick="checkAllChecked()">
+        <label for="q2">Dress Right, DRESS (check alignment)</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q3" onclick="checkAllChecked()">
+        <label for="q3">Ready, FRONT</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q4" onclick="checkAllChecked()">
+        <label for="q4">Right, FACE</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q5" onclick="checkAllChecked()">
+        <label for="q5">Left, FACE</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q6" onclick="checkAllChecked()">
+        <label for="q6">About, FACE</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q7" onclick="checkAllChecked()">
+        <label for="q7">Forward, MARCH</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q8" onclick="checkAllChecked()">
+        <label for="q8">Left Flank, MARCH</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q9" onclick="checkAllChecked()">
+        <label for="q9">Right Flank, MARCH</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q10" onclick="checkAllChecked()">
+        <label for="q10">To the Rear, MARCH</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q11" onclick="checkAllChecked()">
+        <label for="q11">Element, HALT</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q12" onclick="checkAllChecked()">
+        <label for="q12">FALL OUT</label>
+    </div>
+
+    <!-- Return to Test Button (Initially Hidden) -->
+    <div style="text-align: center;">
+        <button id="return-btn" onclick="window.location.href='index.html'">Return to Test</button>
+    </div>
+
+    <script>
+    function checkAllChecked() {
+        // Get all checkboxes
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        // Check if all checkboxes are checked
+        const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+        // Show the return button if all are checked, otherwise hide it
+        const returnButton = document.getElementById('return-btn');
+        if (allChecked) {
+            returnButton.style.display = 'block';
+        } else {
+            returnButton.style.display = 'none';
+        }
+    }
+    </script>
+</body>
+</html>
