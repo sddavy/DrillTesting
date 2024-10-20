@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wright Brothers Drill & Cerenonies Performance Test</title>
     <style>
+
+    #blank-drill-btn {
+        background-color: #001489; /* Blue color */
+        color: white;
+        padding: 10px 20px;
+        margin: 10px 5px 20px 5px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+    }
+
+    #blank-drill-btn:hover {
+    background-color: #010f61; /* Darker blue on hover */
+    
+    }
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -110,6 +126,14 @@
     <!-- Include jsPDF library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
+    function downloadStaticPDF() {
+        const pdfPath = './WrightBrothers.pdf';  // Assuming the PDF is in the root folder
+        const link = document.createElement('a');
+        link.href = pdfPath;
+        link.download = 'WrightBrothersBlank.pdf';  // The file name when downloaded
+        link.click();
+    }    
+        
     function calculateResults() {
         const totalQuestions = 21; // Updated to the actual number of questions
         let correctAnswers = 0;
@@ -549,6 +573,7 @@
     <div id="result" class="result-text"></div>
     <button id="submit-btn" onclick="calculateResults()">Submit</button>
     <button id="download-btn" onclick="generatePDF()">Download PDF</button>
+    <button id="blank-drill-btn" onclick="downloadStaticPDF()">Download Blank Drill Test</button>
 
     <div style="text-align: center; margin-top: 30px;">
         <button class="home-btn" onclick="confirmHomeNavigation()">Return to Home</button>
