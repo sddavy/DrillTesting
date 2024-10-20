@@ -8,16 +8,15 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            text-align: center;
+            text-align: left; /* Align text to the left */
         }
         h1 {
             margin-bottom: 20px;
         }
         .button-container {
             display: flex;
-            justify-content: space-between;
-            margin: 20px auto;
-            max-width: 600px;
+            justify-content: flex-start; /* Align buttons to the left */
+            margin: 20px 0; /* Removed auto margins */
         }
         .download-btn, .print-btn, .return-btn {
             padding: 10px 20px;
@@ -26,6 +25,7 @@
             border: none;
             border-radius: 5px;
             text-decoration: none;
+            margin-right: 10px; /* Added margin for spacing between buttons */
         }
         .download-btn {
             background-color: #c72f2f; /* Red color */
@@ -35,11 +35,11 @@
             background-color: #8b1414; /* Darker red on hover */
         }
         .print-btn {
-            background-color: #ffc107; /* Yellow color */
-            color: black;
+            background-color: #001489; /* Blue color */
+            color: white; /* Text color set to white for visibility */
         }
         .print-btn:hover {
-            background-color: #e0a800; /* Darker yellow on hover */
+            background-color: #010f61; /* Darker blue on hover */
         }
         .return-btn {
             background-color: #001489; /* Blue color */
