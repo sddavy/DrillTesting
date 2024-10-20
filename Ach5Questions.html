@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievement 5 Command Sequence</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .question-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .question-item label {
+            margin-left: 10px;
+        }
+        #return-btn {
+            display: none;
+            padding: 10px 20px;
+            background-color: #001489; /* Blue color */
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        #return-btn:hover {
+            background-color: #010f61; /* Darker blue on hover */
+        }
+        .info-text {
+            margin-bottom: 20px;
+            text-align: left; /* Aligns text to the right */
+        }
+    </style>
+</head>
+<body>
+    <h1>Questions:</h1>
+
+    <div class="info-text">
+        <p>You’re the flight sergeant.</p>
+        <p>Form and lead the flight in drill, completing all commands in sequence You may add commands as necessary to navigate around obstacles or keep flight in drill area.</p>
+        <p>You will not be graded on any added commands.</p>
+    </div>
+
+    <div class="question-item">
+        <input type="checkbox" id="q1" onclick="checkAllChecked()">
+        <label for="q1">FALL IN</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q2" onclick="checkAllChecked()">
+        <label for="q2">Dress Right, DRESS (check alignment)</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q3" onclick="checkAllChecked()">
+        <label for="q3">Ready, FRONT</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q4" onclick="checkAllChecked()">
+        <label for="q4">Right, FACE</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q5" onclick="checkAllChecked()">
+        <label for="q5">Forward, MARCH</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q6" onclick="checkAllChecked()">
+        <label for="q6">Column Right, MARCH</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q7" onclick="checkAllChecked()">
+        <label for="q7">Forward, MARCH</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q8" onclick="checkAllChecked()">
+        <label for="q8">Close, MARCH & Forward, MARCH</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q9" onclick="checkAllChecked()">
+        <label for="q9">Extend, MARCH & Forward, MARCH</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q10" onclick="checkAllChecked()">
+        <label for="q10">Change Step, MARCH</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q11" onclick="checkAllChecked()">
+        <label for="q11">Count Cadence, COUNT</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q12" onclick="checkAllChecked()">
+        <label for="q12">Flight, HALT</label>
+    </div>
+    <div class="question-item">
+        <input type="checkbox" id="q13" onclick="checkAllChecked()">
+        <label for="q13">Left Step, MARCH</label>
+    </div>
+  <div class="question-item">
+        <input type="checkbox" id="q13" onclick="checkAllChecked()">
+        <label for="q14">Flight, HALT</label>
+    </div>
+  <div class="question-item">
+        <input type="checkbox" id="q13" onclick="checkAllChecked()">
+        <label for="q15">Left, FACE</label>
+    </div>
+  <div class="question-item">
+        <input type="checkbox" id="q13" onclick="checkAllChecked()">
+        <label for="q16">Open Ranks, MARCH (check alignment)</label>
+    </div>
+  <div class="question-item">
+        <input type="checkbox" id="q13" onclick="checkAllChecked()">
+        <label for="q17">Ready, FRONT</label>
+    </div>
+  <div class="question-item">
+        <input type="checkbox" id="q13" onclick="checkAllChecked()">
+        <label for="q18">Close Ranks, MARCH</label>
+    </div>
+  <div class="question-item">
+        <input type="checkbox" id="q19" onclick="checkAllChecked()">
+        <label for="q12">Right, FACE</label>
+    </div>
+  <div class="question-item">
+        <input type="checkbox" id="q20" onclick="checkAllChecked()">
+        <label for="q12">Column of Files from the Right, Forward, MARCH</label>
+    </div>
+  <div class="question-item">
+        <input type="checkbox" id="q21" onclick="checkAllChecked()">
+        <label for="q12">Flight, HALT</label>
+    </div>
+  <div class="question-item">
+        <input type="checkbox" id="q22" onclick="checkAllChecked()">
+        <label for="q12">FALL OUT</label>
+    </div>
+  
+
+  
+    <!-- Return to Test Button (Initially Hidden) -->
+    <div style="text-align: center;">
+        <button id="return-btn" onclick="window.location.href='Ach5.html'">Return to Test</button>
+    </div>
+
+    <script>
+    function checkAllChecked() {
+        // Get all checkboxes
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        // Check if all checkboxes are checked
+        const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+        // Show the return button if all are checked, otherwise hide it
+        const returnButton = document.getElementById('return-btn');
+        if (allChecked) {
+            returnButton.style.display = 'block';
+        } else {
+            returnButton.style.display = 'none';
+        }
+    }
+    </script>
+</body>
+</html>
