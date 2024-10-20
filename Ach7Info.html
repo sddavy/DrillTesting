@@ -19,28 +19,31 @@
             margin: 20px auto;
             max-width: 600px;
         }
-        .download-btn {
-            background-color: #c72f2f; /* Red color */
-            color: white;
+        .download-btn, .print-btn, .return-btn {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             border: none;
             border-radius: 5px;
             text-decoration: none;
+        }
+        .download-btn {
+            background-color: #c72f2f; /* Red color */
+            color: white;
         }
         .download-btn:hover {
             background-color: #8b1414; /* Darker red on hover */
         }
+        .print-btn {
+            background-color: #ffc107; /* Yellow color */
+            color: black;
+        }
+        .print-btn:hover {
+            background-color: #e0a800; /* Darker yellow on hover */
+        }
         .return-btn {
             background-color: #001489; /* Blue color */
             color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
         }
         .return-btn:hover {
             background-color: #010f61; /* Darker blue on hover */
@@ -53,15 +56,26 @@
             link.download = 'Ach7.pdf'; // The file name when downloaded
             link.click();
         }
+
+        function printPDF() {
+            const pdfPath = './Ach7.pdf'; // Path to your PDF file
+            const printWindow = window.open(pdfPath);
+            printWindow.onload = function() {
+                printWindow.print();
+            };
+        }
     </script>
 </head>
 <body>
-    <h1>Welcome to the Achievement 7 Drill Test</h1>
-    <p>This page contains important information regarding your upcoming drill test.</p>
-    <p>Please ensure you download the necessary materials and review them thoroughly.</p>
+    <h1>Information About the Achievement 7 Drill and Ceremonies Practical Test</h1>
+    <p>Due to limitations in the regulations, the Ach. 7 is only allowed to be administered on paper for several reasons, mostly because of the fact that Problem 1 includes a writing portion, to which writing on a screen has disadvantages. Additionally, Problem 2 has a complex Change of Command portion, which would be difficult to convert to digital format.</p>
+    <p>There is also a scorecard which includes symbols to represent various positions such as the Group Commander and First Sergeant, which cannot easily be embedded in the HTML format this website is coded in.</p>
+    <p>Due to these and other reasons, Ach. 7 Drill Test has not been included in this system. Thank you for your understanding.</p>
+    <p>The alternative is to administer the test normally on paper, which can be printed or downloaded below.</p>
 
     <div class="button-container">
-        <button class="download-btn" onclick="downloadPDF()">Download Drill Tests</button>
+        <button class="download-btn" onclick="downloadPDF()">Download Drill Test</button>
+        <button class="print-btn" onclick="printPDF()">Print Drill Test</button>
         <button class="return-btn" onclick="window.location.href='Ach7.html'">Return</button>
     </div>
 </body>
