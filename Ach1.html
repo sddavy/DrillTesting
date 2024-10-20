@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Achievement 1 Drill Test</title>
     <style>
+
+.download-static-pdf-btn {
+    background-color: #001489; /* Blue color */
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 5px 20px 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.download-static-pdf-btn:hover {
+    background-color: #010f61; /* Darker blue on hover */
+}
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -503,6 +518,11 @@
     <div id="result" class="result-text"></div>
     <button id="submit-btn" onclick="calculateResults()">Submit</button>
     <button id="download-btn" onclick="generatePDF()">Download PDF</button>
+    
+            <!-- Download Static PDF Button -->
+    <a href="Ach1.pdf" download>
+        <button class="download-static-pdf-btn">Download Static PDF</button>
+    </a>
 
     <div style="text-align: center; margin-top: 30px;">
         <button class="home-btn" onclick="confirmHomeNavigation()">Return to Home</button>
