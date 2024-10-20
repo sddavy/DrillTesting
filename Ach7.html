@@ -28,6 +28,7 @@
 
         #questions-btn,
         #blank-drill-btn,
+        #print-btn,
         #submit-btn,
         #download-btn,
         .home-btn {
@@ -77,6 +78,14 @@
             link.click();
         }
 
+        function printPDF() {
+            const pdfPath = './Ach7.pdf'; // Path to your PDF file
+            const printWindow = window.open(pdfPath);
+            printWindow.onload = function() {
+                printWindow.print();
+            };
+        }
+
         function confirmHomeNavigation() {
             const confirmNavigation = confirm("Are you sure you want to return to the home page?");
             if (confirmNavigation) {
@@ -97,6 +106,7 @@
     <div style="text-align: center; margin-bottom: 20px;">
         <button id="questions-btn" onclick="window.location.href='Ach7Info.html'">Information About the Achievement 7 Drill Test</button>
         <button id="blank-drill-btn" onclick="downloadStaticPDF()">Download Drill Test</button>
+        <button id="print-btn" onclick="printPDF()">Print Drill Test</button> <!-- Added Print Button -->
     </div>
 
     <div style="text-align: center; margin-top: 30px;">
