@@ -19,7 +19,7 @@ if (!isset($_SESSION['loggedin'])) {
             // Check if the user is visiting for the first time
             if (!localStorage.getItem('hasVisited')) {
                 // Show the welcome message
-                alert('Welcome to the Parker Composite Squadron Online Drill Testing System! Please enable Javascript for this website to run correctly');
+                alert('Welcome to the Parker Composite Squadron Online Drill Testing System! Please enable Javascript for this website to run correctly. If you have any questions or concerns, please contact the administrator at https://drilltesting.pages.dev/contact.');
 
                 // Set a flag in local storage to remember the user has visited
                 localStorage.setItem('hasVisited', 'true');
