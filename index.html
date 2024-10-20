@@ -1,3 +1,13 @@
+<?php
+session_start(); // Start the session
+
+// Check if the user is logged in
+if (!isset($_SESSION['loggedin'])) {
+    header("Location: login.php"); // Redirect to login if not logged in
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,6 +90,10 @@
             padding: 15px; /* Increased padding for footer */
             border-radius: 8px; /* Rounded corners for footer */
             margin-top: auto; /* Pushes footer to the bottom */
+        }
+
+        footer:hover {
+            background-color: #001489; /* Keep the same dark blue on hover */
         }
 
         /* Footer text styling */
