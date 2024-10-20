@@ -5,53 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Achievement 4 Drill Test</title>
     <style>
-    #questions-btn {
-    background-color: #001489; /* Blue color */
-    color: white;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    margin: 10px 0;
-}
+        #questions-btn {
+            background-color: #001489; /* Blue color */
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
 
-#questions-btn:hover {
-    background-color: #010f61; /* Darker blue on hover */
-}
+        #questions-btn:hover {
+            background-color: #010f61; /* Darker blue on hover */
+        }
+
         #blank-drill-btn {
-        background-color: #001489; /* Blue color */
-        color: white;
-        padding: 10px 20px;
-        margin: 10px 5px 20px 5px;
-        font-size: 16px;
-        cursor: pointer;
-        border: none;
-        border-radius: 5px;
-    }
+            background-color: #001489; /* Blue color */
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 5px 20px 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
 
-    #blank-drill-btn:hover {
-    background-color: #010f61; /* Darker blue on hover */
-    
-    }
+        #blank-drill-btn:hover {
+            background-color: #010f61; /* Darker blue on hover */
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
             line-height: 1.6;
         }
+
         h1, h2, h3 {
             text-align: center;
         }
+
         label {
             font-weight: bold;
             display: block; /* Changed to block for vertical stacking */
             margin: 10px 0 5px; /* Added margin for spacing */
         }
+
         input[type="text"], input[type="date"] {
             width: 200px;
             padding: 5px;
             margin-bottom: 20px; /* Margin for spacing between fields */
         }
+
         .question {
             margin-bottom: 20px;
             border: 1px solid #ccc;
@@ -59,22 +64,27 @@
             border-radius: 5px;
             background-color: #f9f9f9;
         }
+
         .qualifications {
             margin: 10px 0;
             font-style: italic;
         }
+
         .radio-group {
             display: flex;
             justify-content: flex-start;
             align-items: center;
         }
+
         .radio-group label {
             margin-right: 20px;
             font-weight: normal;
         }
+
         .radio-group input[type="radio"] {
             margin-right: 5px;
         }
+
         button {
             padding: 10px 20px;
             margin: 10px 5px 20px 5px;
@@ -84,6 +94,7 @@
             border: none;
             border-radius: 5px;
         }
+
         /* Submit Button */
         #submit-btn {
             background-color: #001489; /* Blue color */
@@ -110,21 +121,26 @@
         .home-btn:hover {
             background-color: #8b1414; /* Darker red on hover */
         }
+
         .result-text {
             font-size: 24px;
             font-weight: bold;
             text-align: center;
             margin-top: 20px;
         }
+
         .passed {
             color: green;
         }
+
         .not-passed {
             color: red;
         }
+
         hr {
             margin: 30px 0;
         }
+
         a {
             display: block;
             text-align: center;
@@ -132,6 +148,7 @@
             text-decoration: none;
             color: #007BFF;
         }
+
         a:hover {
             text-decoration: underline;
         }
@@ -150,105 +167,104 @@
         const totalQuestions = 5; // Updated to the actual number of questions
         let correctAnswers = 0;
         let totalAnswered = 0;
-    
+
         // Select all the question elements
         const questions = document.querySelectorAll('.question');
-    
+
         // Loop through each question
         questions.forEach((question, index) => {
             // Get the correct and incorrect radio buttons for this question
             const correctRadio = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`);
             const selectedRadio = question.querySelector(`input[name="q${index + 1}"]:checked`);
-    
+
             // If the user selected an answer, increase the totalAnswered count
             if (selectedRadio) {
-            totalAnswered += 1;
+                totalAnswered += 1;
 
                 // If the correct answer is selected, increase the correctAnswers count
-             if (correctRadio && correctRadio.checked) {
-            correctAnswers += 1;
+                if (correctRadio && correctRadio.checked) {
+                    correctAnswers += 1;
+                }
             }
+        });
+
+        // Check if all questions are answered
+        if (totalAnswered !== totalQuestions) {
+            alert(`You have answered ${totalAnswered} out of ${totalQuestions} questions. Please answer all questions.`);
+            return;
         }
-    });
 
-    // Check if all questions are answered
-    if (totalAnswered !== totalQuestions) {
-        alert(`You have answered ${totalAnswered} out of ${totalQuestions} questions. Please answer all questions.`);
-        return;
-    }
+        // Calculate percentage of correct answers
+        const percentage = (correctAnswers / totalQuestions) * 100;
+        let resultMessage = '';
+        let resultClass = '';
 
-    // Calculate percentage of correct answers
-    const percentage = (correctAnswers / totalQuestions) * 100;
-    let resultMessage = '';
-    let resultClass = '';
+        // Determine pass/fail based on percentage
+        if (percentage >= 80) {
+            resultMessage = `Passed - Number Correct: ${correctAnswers}`;
+            resultClass = 'passed';
+        } else {
+            resultMessage = `Failed - Number Correct: ${correctAnswers}`;
+            resultClass = 'not-passed';
+        }
 
-    // Determine pass/fail based on percentage
-    if (percentage >= 80) {
-        resultMessage = `Passed - Number Correct: ${correctAnswers}`;
-        resultClass = 'passed';
-    } else {
-        resultMessage = `Failed - Number Correct: ${correctAnswers}`;
-        resultClass = 'not-passed';
-    }
+        // Update the result text and class for displaying the result
+        document.getElementById('total-correct').textContent = correctAnswers;
+        document.getElementById('total-incorrect').textContent = totalQuestions - correctAnswers;
+        const resultElement = document.getElementById('result');
+        resultElement.textContent = resultMessage;
+        resultElement.className = `result-text ${resultClass}`;
 
-    // Update the result text and class for displaying the result
-    document.getElementById('total-correct').textContent = correctAnswers;
-    document.getElementById('total-incorrect').textContent = totalQuestions - correctAnswers;
-    const resultElement = document.getElementById('result');
-    resultElement.textContent = resultMessage;
-    resultElement.className = `result-text ${resultClass}`;
-
-    // Scroll to the result area smoothly
-    resultElement.scrollIntoView({ behavior: 'smooth' });
+        // Scroll to the result area smoothly
+        resultElement.scrollIntoView({ behavior: 'smooth' });
     }
     function generatePDF() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
-    
+
         const name = document.getElementById('name').value || 'N/A';
         const date = document.getElementById('date').value || 'N/A';
         const testedBy = document.getElementById('tested-by').value || 'N/A';
         const totalCorrect = document.getElementById('total-correct').textContent;
         const totalIncorrect = document.getElementById('total-incorrect').textContent;
         const result = document.getElementById('result').textContent;
-    
+
         doc.setFontSize(18);
         doc.text('Achievement 4 Drill & Ceremonies Practical Test', 105, 20, { align: 'center' });
-    
+
         doc.setFontSize(12);
         doc.text(`Name: ${name}`, 20, 30);
         doc.text(`Date: ${date}`, 20, 40);
         doc.text(`Tested by: ${testedBy}`, 20, 50);
-    
+
         doc.text(`Total Correct: ${totalCorrect}`, 20, 60);
         doc.text(`Total Incorrect: ${totalIncorrect}`, 20, 70);
         doc.text(`Result: ${result}`, 20, 80);
-    
+
         doc.setFontSize(14);
         doc.text('Questions and Answers:', 20, 90);
-    
+
         doc.setFontSize(12);
         let currentY = 100;
-    
+
         const questions = document.querySelectorAll('.question');
         questions.forEach((question, index) => {
             const questionLabel = question.querySelector('label').textContent;
             const correctChecked = question.querySelector(`input[name="q${index + 1}"][data-correct="true"]`).checked;
             const answer = correctChecked ? 'Correct' : 'Incorrect';
-    
+
             if (currentY > 280) {
                 doc.addPage();
                 currentY = 20;
             }
-    
+
             doc.text(`${questionLabel}: ${answer}`, 20, currentY);
             currentY += 10;
         });
-    
+
         doc.save(`Achievement4DrillTest_${name}.pdf`);  // This was missing
     }
     </script>
-
 </head>
 <body>
     <h1>Achievement 4 Drill & Ceremonies Practical Test</h1>
@@ -264,6 +280,13 @@
         <label for="tested-by">Tested by:</label>
         <input type="text" id="tested-by" required>
     </div>
+    
+    <div text-align: center;">
+         <p>Topic: Drill of the Element as an Element Leader (not in ranks)</p>
+         <p>Conditions: Provide the cadet with a list of the commands shown below (See Attachment 1) and allow the cadet to refer to them during the course of the test. Instruct the cadet to lead the element in drill, completing all commands in sequence. The element should consist of at least 3 cadets. Assign to the element cadets who are proficient in basic drill. </p>
+         <p>Passing Score: 80%. Must fulfill at least 4 out of the 5 acceptable standards satisfactorily</p>
+         <p>Note: The element’s ability to perform the commands is NOT relevant to this test, only the cadet’s ability to call commands properly is being evaluated.</p>
+        </div>
     
     <!-- Button linking to Ach4Questions.html -->
     <div style="text-align: center; margin-bottom: 20px;">
